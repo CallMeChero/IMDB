@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import {
+  MatSnackBar,
+  MatSnackBarConfig,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +15,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
+  public error;
+  actionButtonLabel: string = 'Retry';
+  action: boolean = true;
 
   login_validation_messages = {
     'email': [
@@ -20,9 +29,6 @@ export class LoginComponent implements OnInit {
       { type: 'pattern', message: 'Your password must be between 6 and 12 characters' }
     ]
     }
-
-  //Validators.pattern(this.EMAIL_REGEX)
-  //private EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
   loginForm = this.fb.group({
     email: ['',Validators.compose([
@@ -37,20 +43,32 @@ export class LoginComponent implements OnInit {
       ])
     ],
   });
+
+
   
   constructor(
     private fb: FormBuilder,
-    private http:HttpClient
+    private http:HttpClient,
+    public snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
   }
   onSubmit() {
-    return this.http.post('http://localhost:8000/api/auth/login', this.loginForm.value)
+    return this.http.post('http://localhost:8000/api/login', this.loginForm.value)
               .subscribe(
                 data => console.log(data),
-                error => console.log(error)
+                error => this.handleError(error)
               );
+  }
+
+  handleError(error) {
+    this.error = error.error.error;
+    this.openSnackBar(this.error);
+  }
+
+  openSnackBar(error) {
+    this.snackBar.open(error,this.action ? this.actionButtonLabel : undefined);
   }
 
 }

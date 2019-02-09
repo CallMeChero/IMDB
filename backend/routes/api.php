@@ -1,8 +1,7 @@
 <?php
 Route::group([
 
-    'middleware' => 'api',
-    'prefix' => 'auth'
+    'middleware' => 'api'
 
 ], function ($router) {
 

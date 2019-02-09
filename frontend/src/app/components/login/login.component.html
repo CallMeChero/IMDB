@@ -20,8 +20,9 @@
   </mat-form-field>
 
   <div class="form-button">
-      <a mat-raised-button color="primary" (click)="onSubmit()" style="margin-right:45px;">Login</a>
-      <a mat-raised-button color="primary" style="float:right;">Sign up</a>
+      <a mat-raised-button color="primary" [disabled]="!loginForm.valid" (click)="onSubmit()" style="margin-right:45px;">Login</a>
+      <a mat-raised-button color="primary" routerLink="/signup" style="float:right;">Sign up</a>
   </div>
 </div>
 </form>
+<snack-bar-component></snack-bar-component>
