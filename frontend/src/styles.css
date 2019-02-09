@@ -1,2 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-container {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    left: 35%;
+    top: 25%;
+    position: absolute;
+    background-color: #B0E0E6;
+    border-radius: 25px;
+}
+
+body {
+    background: url('https://picsum.photos/g/1800/970/?random') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

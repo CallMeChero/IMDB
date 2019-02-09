@@ -1,3 +1,27 @@
-<p>
-  login works!
-</p>
+<form [formGroup]="loginForm">
+  <div class="form-container">
+  <span>Login</span>
+  <hr>
+  <mat-form-field>
+      <input matInput placeholder="email" formControlName="email" required>
+      <mat-error *ngFor="let validation of login_validation_messages.email">
+          <mat-error class="error-message" *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">{{validation.message}}</mat-error>
+      </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+      <input matInput type="password" placeholder="password" formControlName="password" required>
+      <mat-error *ngIf="loginForm.hasError('required')">
+          This field is required
+      </mat-error>
+      <mat-error *ngFor="let validation of login_validation_messages.password">
+          <mat-error class="error-message" *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">{{validation.message}}</mat-error>
+      </mat-error>
+  </mat-form-field>
+
+  <div class="form-button">
+      <a mat-raised-button color="primary" (click)="onSubmit()" style="margin-right:45px;">Login</a>
+      <a mat-raised-button color="primary" style="float:right;">Sign up</a>
+  </div>
+</div>
+</form>

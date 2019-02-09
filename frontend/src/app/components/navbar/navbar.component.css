@@ -3,3 +3,14 @@
        Every toolbar row uses a flexbox row layout. */
     flex: 1 1 auto;
   }
+.pull-left {
+   margin-right: 25px;
+}
+
+mat-toolbar {
+   margin-left: -10px;
+   overflow: hidden;
+   position: fixed;
+   top: 0;
+   width: 100%;
+ }
