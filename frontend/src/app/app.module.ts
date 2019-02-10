@@ -23,6 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { TokenService } from './services/token.service';
+import { BeforeLoginService } from './services/before-login.service';
+import { AfterLoginService } from './services/after-login.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { TokenService } from './services/token.service';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     AuthService,
-    TokenService
+    TokenService,
+    BeforeLoginService,
+    AfterLoginService
   ],
   bootstrap: [AppComponent]
 })

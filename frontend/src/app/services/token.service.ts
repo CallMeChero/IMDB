@@ -13,6 +13,10 @@ export class TokenService {
   private logged = new BehaviorSubject<boolean>(this.loggedIn());
   authStatus = this.logged.asObservable(); //kadgod se promjeni loggedIn u false, odmah se triggera
 
+  changeAuthStatus(value: boolean){
+    this.logged.next(value);
+  }
+
   constructor() { }
 
   handle(token) {
@@ -54,9 +58,5 @@ export class TokenService {
 
   loggedIn() {
     return this.isValid();
-  }
-
-  changeAuthStatus(value: boolean){
-    this.logged.next(value);
   }
 }

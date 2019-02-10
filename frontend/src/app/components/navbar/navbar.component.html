@@ -4,7 +4,7 @@
   <!-- This fills the remaining space of the current row -->
   <span class="example-fill-remaining-space"></span>
 
-  <a mat-stroked-button class="pull-left" *ngIf="!loggedIn" href="/login">Login</a>
-  <a mat-stroked-button class="pull-left" *ngIf="loggedIn" href="/login">Logout</a>
-  <a mat-stroked-button href="/profile" *ngIf="loggedIn">Profile</a>
+  <a mat-stroked-button class="pull-left" *ngIf="!loggedIn" routerLink="/login">Login</a>
+  <a mat-stroked-button class="pull-left" *ngIf="loggedIn" routerLink="#" (click)="logout($event)">Logout</a>
+  <a mat-stroked-button routerLink="/profile" *ngIf="loggedIn">Profile</a>
 </mat-toolbar>
