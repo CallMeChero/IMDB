@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import {
   MatSnackBar,
   MatSnackBarConfig,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -27,8 +27,7 @@ export class LoginComponent implements OnInit {
     'password': [
       { type: 'required', message: 'Password is required' },
       { type: 'pattern', message: 'Your password must be between 6 and 12 characters' }
-    ]
-    }
+    ]}
 
   loginForm = this.fb.group({
     email: ['',Validators.compose([
@@ -48,15 +47,14 @@ export class LoginComponent implements OnInit {
   
   constructor(
     private fb: FormBuilder,
-    private http:HttpClient,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private auth:AuthService
   ) { }
 
   ngOnInit() {
   }
   onSubmit() {
-    return this.http.post('http://localhost:8000/api/login', this.loginForm.value)
-              .subscribe(
+    this.auth.login(this.loginForm.value).subscribe(
                 data => console.log(data),
                 error => this.handleError(error)
               );
@@ -68,6 +66,7 @@ export class LoginComponent implements OnInit {
   }
 
   openSnackBar(error) {
+    console.log(error);
     this.snackBar.open(error,this.action ? this.actionButtonLabel : undefined);
   }
 

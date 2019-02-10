@@ -21,6 +21,7 @@ import { ResponseResetComponent } from './components/password/response-reset/res
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { HttpClientModule } from '@angular/common/http';
     DemoMaterialModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,44 @@
-<p>
-  signup works!
-</p>
+<form [formGroup]="signupForm">
+  <div class="form-container">
+  <span>Sign up</span>
+  <hr>
+  <mat-form-field>
+    <input matInput type="text" placeholder="username" formControlName="username" required>
+    <mat-error *ngFor="let validation of login_validation_messages.username">
+        <mat-error class="error-message" *ngIf="signupForm.get('username').hasError(validation.type) && (signupForm.get('username').dirty || signupForm.get('username').touched)">{{validation.message}}</mat-error>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+      <input matInput type="email" placeholder="email" formControlName="email" required>
+      <mat-error *ngFor="let validation of login_validation_messages.email">
+          <mat-error class="error-message" *ngIf="signupForm.get('email').hasError(validation.type) && (signupForm.get('email').dirty || signupForm.get('email').touched)">{{validation.message}}</mat-error>
+      </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+      <input matInput type="password" placeholder="password" formControlName="password" id="password" name="password" required>
+      <mat-error *ngIf="signupForm.hasError('required')">
+          This field is required
+      </mat-error>
+      <mat-error *ngFor="let validation of login_validation_messages.password">
+          <mat-error class="error-message" *ngIf="signupForm.get('password').hasError(validation.type) && (signupForm.get('password').dirty || signupForm.get('password').touched)">{{validation.message}}</mat-error>
+      </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="password" placeholder="confirm password" name="password_confirmation" formControlName="password_confirmation" id="inputPasswordConfirmation4" required>
+    <mat-error *ngIf="signupForm.hasError('required')">
+        This field is required
+    </mat-error>
+    <mat-error *ngFor="let validation of login_validation_messages.password_confirmation">
+      <mat-error class="error-message" *ngIf="signupForm.get('password_confirmation').hasError(validation.type) && (signupForm.get('password_confirmation').dirty || signupForm.get('password_confirmation').touched)">{{validation.message}}</mat-error>
+  </mat-error>
+  </mat-form-field>
+
+  <div class="form-button">
+      <a mat-raised-button color="primary" (click)="onSubmit()" style="margin-right:45px;">Login</a>
+      <a mat-raised-button color="primary" routerLink="/signup" style="float:right;">Sign up</a>
+  </div>
+</div>
+</form>
+<snack-bar-component></snack-bar-component>
