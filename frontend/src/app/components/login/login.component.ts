@@ -7,6 +7,7 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material';
 import { AuthService } from 'src/app/services/auth.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -48,14 +49,15 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public snackBar: MatSnackBar,
-    private auth:AuthService
+    private auth:AuthService,
+    private token:TokenService
   ) { }
 
   ngOnInit() {
   }
   onSubmit() {
     this.auth.login(this.loginForm.value).subscribe(
-                data => console.log(data),
+                data => this.handleResponse(data),
                 error => this.handleError(error)
               );
   }
@@ -63,6 +65,10 @@ export class LoginComponent implements OnInit {
   handleError(error) {
     this.error = error.error.error;
     this.openSnackBar(this.error);
+  }
+
+  handleResponse(data) {
+    this.token.handle(data.access_token);
   }
 
   openSnackBar(error) {
