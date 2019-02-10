@@ -8,6 +8,7 @@ import {
 } from '@angular/material';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { PasswordValidation } from 'src/app/helpers/password.validator';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-signup',
@@ -17,6 +18,7 @@ import { PasswordValidation } from 'src/app/helpers/password.validator';
 export class SignupComponent implements OnInit {
 
   public error;
+  public err;
   actionButtonLabel: string = 'Retry';
   action: boolean = true;
 
@@ -69,7 +71,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public snackBar: MatSnackBar,
-    private auth:AuthService
+    private auth:AuthService,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -82,13 +85,24 @@ export class SignupComponent implements OnInit {
               );
   }
 
-  handleError(error) {
-    this.error = error.error.error;
+  handleError(errors) {
+    this.err = Object.values(errors.error.errors);
+    this.error = '';
+      this.err.forEach(function(obj, index) {
+        if(obj != undefined) {
+          this.error += obj + '. ';
+        }
+      }, this);
     this.openSnackBar(this.error);
   }
 
   openSnackBar(error) {
+    console.log(error);
     this.snackBar.open(error,this.action ? this.actionButtonLabel : undefined);
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }

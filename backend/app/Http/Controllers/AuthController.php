@@ -23,11 +23,7 @@ class AuthController extends Controller
     public function signup(SignUpRequest $request)
     {
         if (User::where('email', '=', $request->email)->exists()) {
-            
-            if($email) {
-                return response()->json(['error' => 'There is account with that email adress'], 401);
-            }
-
+            return response()->json(['error' => 'There is account with that email adress'], 401);
         }
         $user = User::create($request->all());
 
@@ -96,7 +92,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()->name
+            'user' => auth()->user()->username
         ]);
     }
 }

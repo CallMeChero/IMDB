@@ -36,8 +36,8 @@
   </mat-form-field>
 
   <div class="form-button">
-      <a mat-raised-button color="primary" (click)="onSubmit()" style="margin-right:45px;">Login</a>
-      <a mat-raised-button color="primary" routerLink="/signup" style="float:right;">Sign up</a>
+      <a mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!signupForm.valid" style="margin-right:45px;">Sign up</a>
+      <a mat-raised-button color="primary" (click)="goBack()" style="float:right;">Go back</a>
   </div>
 </div>
 </form>
