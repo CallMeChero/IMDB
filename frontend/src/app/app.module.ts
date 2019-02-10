@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
+import { TokenService } from './services/token.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,10 @@ import { AuthService } from './services/auth.service';
     DemoMaterialModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    TokenService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

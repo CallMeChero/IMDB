@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,8 @@ export class TokenService {
     login: 'http://localhost:8000/api/login',
     signup: 'http://localhost:8000/api/signup'
   };
+  private logged = new BehaviorSubject<boolean>(this.loggedIn());
+  authStatus = this.logged.asObservable(); //kadgod se promjeni loggedIn u false, odmah se triggera
 
   constructor() { }
 
@@ -51,5 +54,9 @@ export class TokenService {
 
   loggedIn() {
     return this.isValid();
+  }
+
+  changeAuthStatus(value: boolean){
+    this.logged.next(value);
   }
 }

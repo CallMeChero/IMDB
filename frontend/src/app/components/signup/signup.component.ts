@@ -9,6 +9,8 @@ import {
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { PasswordValidation } from 'src/app/helpers/password.validator';
 import {Location} from '@angular/common';
+import { TokenService } from 'src/app/services/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -45,24 +47,30 @@ export class SignupComponent implements OnInit {
   signupForm = this.fb.group({
     username:[
         '',
-        Validators.required
+        Validators.compose([
+          Validators.required,
+          Validators.pattern('^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$')
+        ])
       ],
-    email: ['',
+    email: [
+      '',
       Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$')
-    ])],
+    ])
+  ],
     password: [
       '',
       Validators.compose([
         Validators.required,
-        Validators.pattern('^([a-zA-Z]|\d){6,12}')
+        Validators.pattern('[A-Za-z0-9]{3,}')
       ])
     ],
-    password_confirmation:[ '', 
+    password_confirmation:[ 
+      '', 
       Validators.compose([
         Validators.required,
-        Validators.pattern('^([a-zA-Z]|\d){6,12}'),
+        Validators.pattern('[A-Za-z0-9]{3,}'),
         // PasswordValidation.MatchPassword
     ])]
   },{ validator: PasswordValidation.MatchPassword });
@@ -72,7 +80,9 @@ export class SignupComponent implements OnInit {
     private fb: FormBuilder,
     public snackBar: MatSnackBar,
     private auth:AuthService,
-    private location: Location
+    private location: Location,
+    private token:TokenService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -80,9 +90,15 @@ export class SignupComponent implements OnInit {
   onSubmit() {
     this.auth.signUp(this.signupForm.value)
               .subscribe(
-                data => console.log(data),
+                data => this.handleResponse(data),
                 error => this.handleError(error)
               );
+  }
+
+  handleResponse(data) {
+    this.token.handle(data.access_token);
+    this.token.changeAuthStatus(true);
+    this.router.navigateByUrl('/profile');
   }
 
   handleError(errors) {

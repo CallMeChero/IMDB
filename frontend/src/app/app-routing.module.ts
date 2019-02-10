@@ -9,7 +9,7 @@ import { ResponseResetComponent } from './components/password/response-reset/res
 const routes: Routes = [
   { path:'login', component: LoginComponent },
   { path:'signup', component: SignupComponent },
-  { path:'profile', component: ProfileComponent },
+  { path:'profile', component: ProfileComponent},
   { path:'request-password-reset', component: RequestResetComponent },
   { path:'response-password-reset', component: ResponseResetComponent }
 ];

@@ -8,6 +8,7 @@ import {
 } from '@angular/material';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenService } from 'src/app/services/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -39,7 +40,7 @@ export class LoginComponent implements OnInit {
       '',
       Validators.compose([
         Validators.required,
-        Validators.pattern('^([a-zA-Z]|\d){6,12}')
+        Validators.pattern('[A-Za-z0-9]{3,}')
       ])
     ],
   });
@@ -50,7 +51,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     public snackBar: MatSnackBar,
     private auth:AuthService,
-    private token:TokenService
+    private token:TokenService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -69,6 +71,8 @@ export class LoginComponent implements OnInit {
 
   handleResponse(data) {
     this.token.handle(data.access_token);
+    this.token.changeAuthStatus(true);
+    this.router.navigateByUrl('/profile');
   }
 
   openSnackBar(error) {
