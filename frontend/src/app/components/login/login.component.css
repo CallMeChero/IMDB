@@ -8,10 +8,21 @@ mat-form-field {
 .form-button {
     padding: 15px;
     margin: 25px;
+    width: 275px;
 }
 .form-button > a:first-child {
     margin-right: 75px;
 }
+
+.form-button > .pull-right {
+    float:right;
+}
+
+.form-button > .mar-top-rt {
+    margin-top: 25px;
+    margin-right:-5%;
+}
+
 .form-container > span {
     padding: 25px;
     margin: 0;

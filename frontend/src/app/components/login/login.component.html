@@ -21,7 +21,9 @@
 
   <div class="form-button">
       <a mat-raised-button color="primary" [disabled]="!loginForm.valid" (click)="onSubmit()" style="margin-right:45px;">Login</a>
-      <a mat-raised-button color="primary" routerLink="/signup" style="float:right;">Sign up</a>
+      <a mat-raised-button color="primary" routerLink="/signup" class="pull-right">Sign up</a>
+      <br>
+      <a mat-button color="primary" routerLink="/request-password-reset" class="pull-right mar-top-rt"><i>Lost your password?</i></a>
   </div>
 </div>
 </form>

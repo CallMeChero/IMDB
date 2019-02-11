@@ -1,0 +1,45 @@
+mat-form-field {
+    width: 250px;
+    height: 75px;
+    padding: 25px 10px;
+    margin: 25px;
+}
+
+.form-button {
+    padding: 15px;
+    margin: 25px;
+    width: 275px;
+}
+.form-button > a:first-child {
+    margin-right: 75px;
+}
+
+.form-button > .pull-right {
+    float:right;
+}
+
+.form-button > .mar-top-rt {
+    margin-top: 25px;
+    margin-right:-5%;
+}
+
+.form-container > span {
+    padding: 25px;
+    margin: 0;
+    font-size: 2em;
+    font-style: italic;
+    background-color: #4682B4;
+    width:100%;
+    height: 100%;
+    color: white;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+}
+hr {
+    border: 1px solid #3f51b5;;
+    width: 100%;
+    margin:0;
+}
+a:disabled {
+    background: #DC143C; 
+}

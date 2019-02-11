@@ -1,3 +1,17 @@
-<p>
-  request-reset works!
-</p>
+<form [formGroup]="requestResetForm">
+  <div class="form-container">
+  <span>Login</span>
+  <hr>
+  <mat-form-field>
+      <input matInput placeholder="email" formControlName="email" required>
+      <mat-error *ngFor="let validation of request_reset_messages.email">
+          <mat-error class="error-message" *ngIf="requestResetForm.get('email').hasError(validation.type) && (requestResetForm.get('email').dirty || requestResetForm.get('email').touched)">{{validation.message}}</mat-error>
+      </mat-error>
+  </mat-form-field>
+
+  <div class="form-button">
+      <a mat-raised-button color="primary" [disabled]="!requestResetForm.valid" (click)="onSubmit()">Send email with reset password link</a>
+  </div>
+</div>
+</form>
+<snack-bar-component></snack-bar-component>
