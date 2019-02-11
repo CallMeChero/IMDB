@@ -20,7 +20,9 @@ export class ResponseResetComponent implements OnInit {
 
   public error;
   actionButtonLabel: string = 'Retry';
+  actionButtonSuccess: string = 'Okay';
   action: boolean = true;
+  private acceptedToken;
 
   response_reset_messages = {
     'email': [
@@ -40,8 +42,6 @@ export class ResponseResetComponent implements OnInit {
 
   responseResetForm = this.fb.group({
     reset_token: [
-      '',
-      Validators.required
     ],
     email: ['',Validators.compose([
       Validators.required,
@@ -73,21 +73,22 @@ export class ResponseResetComponent implements OnInit {
     private _rout: ActivatedRoute
   ) { 
     _rout.queryParams.subscribe(params => {
-      this.responseResetForm.value.reset_token = params['token'];
+      this.acceptedToken = params['token'];
     });
   }
 
   ngOnInit() {
   }
   onSubmit() {
-    this.auth.login(this.responseResetForm.value).subscribe(
+    this.responseResetForm.value.reset_token = this.acceptedToken;
+    this.auth.changePassword(this.responseResetForm.value).subscribe(
                 data => this.handleResponse(data),
                 error => this.handleError(error)
               );
   }
 
   handleResponse(data) {
-    console.log(data);
+    this.snackBar.open(data.data,this.action ? this.actionButtonSuccess : undefined);
   }
 
   handleError(error) {
@@ -96,7 +97,6 @@ export class ResponseResetComponent implements OnInit {
   }
 
   openSnackBar(error) {
-    console.log(error);
     this.snackBar.open(error,this.action ? this.actionButtonLabel : undefined);
   }
 }
