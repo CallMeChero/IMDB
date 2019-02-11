@@ -1,3 +1,37 @@
-<p>
-  response-reset works!
-</p>
+<form [formGroup]="responseResetForm">
+  <div class="form-container">
+  <span>Reset password</span>
+  <hr>
+  <mat-form-field>
+      <input matInput placeholder="email" formControlName="email" required>
+      <mat-error *ngFor="let validation of response_reset_messages.email">
+          <mat-error class="error-message" *ngIf="responseResetForm.get('email').hasError(validation.type) && (responseResetForm.get('email').dirty || responseResetForm.get('email').touched)">{{validation.message}}</mat-error>
+      </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+      <input matInput type="password" placeholder="password" formControlName="password" required>
+      <mat-error *ngIf="responseResetForm.hasError('required')">
+          This field is required
+      </mat-error>
+      <mat-error *ngFor="let validation of response_reset_messages.password">
+          <mat-error class="error-message" *ngIf="responseResetForm.get('password').hasError(validation.type) && (responseResetForm.get('password').dirty || responseResetForm.get('password').touched)">{{validation.message}}</mat-error>
+      </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="password" placeholder="confirm password" name="password_confirmation" formControlName="password_confirmation" id="inputPasswordConfirmation4" required>
+    <mat-error *ngIf="responseResetForm.hasError('required')">
+        This field is required
+    </mat-error>
+    <mat-error *ngFor="let validation of response_reset_messages.password_confirmation">
+      <mat-error class="error-message" *ngIf="responseResetForm.get('password_confirmation').hasError(validation.type) && (responseResetForm.get('password_confirmation').dirty || responseResetForm.get('password_confirmation').touched)">{{validation.message}}</mat-error>
+  </mat-error>
+  </mat-form-field>
+
+  <div class="form-button">
+      <a mat-raised-button color="primary" [disabled]="!responseResetForm.valid" (click)="onSubmit()">Reset your password</a>
+  </div>
+</div>
+</form>
+<snack-bar-component></snack-bar-component>

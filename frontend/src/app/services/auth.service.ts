@@ -19,4 +19,8 @@ export class AuthService {
   sendPasswordResetLink(data) {
     return this.http.post(this.baseURL + '/resetPasswordResetLink',data);
   }
+
+  changePassword(data) {
+    return this.http.post(this.baseURL + '/changePassword',data);
+  }
 }
