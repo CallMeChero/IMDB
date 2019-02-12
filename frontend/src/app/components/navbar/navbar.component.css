@@ -14,3 +14,6 @@ mat-toolbar {
    top: 0;
    width: 100%;
  }
+ .lower-Text {
+    font-size: 15px;
+ }

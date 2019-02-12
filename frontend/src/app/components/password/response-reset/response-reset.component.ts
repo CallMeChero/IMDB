@@ -88,6 +88,7 @@ export class ResponseResetComponent implements OnInit {
   }
 
   handleResponse(data) {
+    this.router.navigateByUrl('/login');
     this.snackBar.open(data.data,this.action ? this.actionButtonSuccess : undefined);
   }
 

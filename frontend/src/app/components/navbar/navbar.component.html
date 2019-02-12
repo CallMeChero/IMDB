@@ -5,6 +5,11 @@
   <span class="example-fill-remaining-space"></span>
 
   <a mat-stroked-button class="pull-left" *ngIf="!loggedIn" routerLink="/login">Login</a>
-  <a mat-stroked-button class="pull-left" *ngIf="loggedIn" routerLink="#" (click)="logout($event)">Logout</a>
-  <a mat-stroked-button routerLink="/profile" *ngIf="loggedIn">Profile</a>
+  <mat-form-field class="lower-Text" *ngIf="loggedIn">
+    <mat-select placeholder="Quick menu">
+      <mat-option *ngFor="let item of quickMenu" [value]="item.route" (onSelectionChange)="relocate($event, item.route)">
+        {{item.component}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 </mat-toolbar>

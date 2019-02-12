@@ -23,4 +23,8 @@ export class AuthService {
   changePassword(data) {
     return this.http.post(this.baseURL + '/changePassword',data);
   }
+
+  getMovies() {
+    return this.http.get(this.baseURL + '/movies');
+  }
 }
