@@ -96,9 +96,9 @@ export class SignupComponent implements OnInit {
   }
 
   handleResponse(data) {
-    this.token.handle(data.access_token);
+    this.token.handle(data);
     this.token.changeAuthStatus(true);
-    this.router.navigateByUrl('/profile');
+    this.router.navigateByUrl('/profile/'+data.user);
   }
 
   handleError(errors) {

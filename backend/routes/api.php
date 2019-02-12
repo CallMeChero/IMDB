@@ -15,4 +15,5 @@ Route::group([
 
     // movies
     Route::get('movies', 'MovieController@index');
+    Route::get('movies/{username}', 'MovieController@showUserMovies');
 });

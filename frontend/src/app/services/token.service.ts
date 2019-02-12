@@ -6,6 +6,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class TokenService {
 
+  private user;
+
   private iss = {
     login: 'http://localhost:8000/api/login',
     signup: 'http://localhost:8000/api/signup'
@@ -19,13 +21,13 @@ export class TokenService {
 
   constructor() { }
 
-  handle(token) {
-    this.setStorage(token);
+  handle(data) {
+    this.setStorage(data);
     console.log(this.isValid());
   }
 
   setStorage(data) {
-    localStorage.setItem('token', data);
+    localStorage.setItem('token', JSON.stringify(data));
   }
 
   getStorage() {
@@ -37,9 +39,9 @@ export class TokenService {
   }
 
   isValid() {
-    const token = this.getStorage();
-    if(token) {
-      const payload = this.payload(token);
+    const data = this.getStorage();
+    if(data) {
+      const payload = this.payload(data);
       if(payload) {
         return Object.values(this.iss).indexOf(payload.iss) > -1 ? true : false
       }

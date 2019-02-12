@@ -8,11 +8,11 @@ use App\User;
 class Movie extends Model
 {
     protected $fillable = [
-        'name', 'user_id',
+        'name', 'user_id'
     ];
 
-    public function post()
+    public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 }

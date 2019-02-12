@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Movie;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -61,7 +62,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function movies()
     {
-        return $this->hasMany('App\Movie');
+        return $this->hasMany(Movie::class);
     }
 
     public function setPasswordAttribute($value) {

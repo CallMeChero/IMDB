@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams  } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +23,15 @@ export class AuthService {
   changePassword(data) {
     return this.http.post(this.baseURL + '/changePassword',data);
   }
-
   getMovies() {
     return this.http.get(this.baseURL + '/movies');
+  }
+
+  getUserMovies(data) {
+
+    // Setup log namespace query parameter
+    //let params = new HttpParams().set('username', data.data);
+    console.log(data);
+    return this.http.get(this.baseURL + '/movies/'+ data);
   }
 }

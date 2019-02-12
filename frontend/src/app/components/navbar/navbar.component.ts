@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  tokenData;
+  user;
+
   quickMenu = [
     {route: '/profile', component: 'View profile'},
     {route: '/#', component: 'Your ratings'},
@@ -25,18 +28,21 @@ export class NavbarComponent implements OnInit {
     this.token.authStatus.subscribe(
       value => this.loggedIn = value
     )
+    this.getLoggedUser();
+  }
+
+  getLoggedUser() {
+    this.tokenData = JSON.parse(this.token.getStorage());
+    return '/' + this.tokenData.user;
   }
 
   relocate(event, route: any){
     if(event.source.selected) {
-      if(route != '/logout') {
-        this.router.navigateByUrl(route);
-      } else {
+      if(route == '/profile') {
+        this.router.navigateByUrl(route + this.getLoggedUser());
+      } else if(route == '/logout') {
         this.logout();
       }
-    }
-    if (event.source.selected) {
-      console.log('You selected:' , route);
     }
   }
 
