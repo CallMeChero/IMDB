@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  hide = true;
   public error;
   actionButtonLabel: string = 'Retry';
   action: boolean = true;

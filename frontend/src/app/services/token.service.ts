@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +20,15 @@ export class TokenService {
     this.logged.next(value);
   }
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   handle(data) {
     this.setStorage(data);
-    console.log(this.isValid());
+    if(!this.isValid()){
+      this.router.navigateByUrl('login');
+    }
   }
 
   setStorage(data) {

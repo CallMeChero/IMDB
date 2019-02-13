@@ -28,10 +28,16 @@ export class AuthService {
   }
 
   getUserMovies(data) {
-
     // Setup log namespace query parameter
     //let params = new HttpParams().set('username', data.data);
-    console.log(data);
     return this.http.get(this.baseURL + '/movies/'+ data);
+  }
+
+  sumbmitMovie(data) {
+    return this.http.post(this.baseURL + '/movies',data);
+  }
+
+  deleteMovie(id: number) {
+    return this.http.post(this.baseURL + '/delete_movie', id);
   }
 }

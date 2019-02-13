@@ -8,11 +8,10 @@
 }
 
 mat-toolbar {
-   margin-left: -10px;
    overflow: hidden;
-   position: fixed;
+   position: sticky;
    top: 0;
-   width: 100%;
+   margin:0;
  }
  .lower-Text {
     font-size: 15px;

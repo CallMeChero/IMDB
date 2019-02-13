@@ -8,7 +8,7 @@ use App\User;
 class Movie extends Model
 {
     protected $fillable = [
-        'name', 'user_id'
+        'name', 'user_id', 'content'
     ];
 
     public function user()

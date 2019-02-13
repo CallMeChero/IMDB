@@ -1,0 +1,51 @@
+<mat-horizontal-stepper linear #stepper>
+    <mat-step>
+        <ng-template matStepLabel>Welcome</ng-template>
+        <div class="center-form">
+          <p>
+            Glad to have you here, we hope you dont mind take a quick survey.
+          </p>
+          <div style="margin-top:20px;">
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </div>
+    </mat-step>
+    <mat-step [stepControl]="nameFormGroup">
+      <form [formGroup]="nameFormGroup">
+        <ng-template matStepLabel>Add a movie name</ng-template>
+        <div class="center-form">
+          <mat-form-field>
+            <input matInput placeholder="name" formControlName="name" id="name" name="name" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+      </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="contentFormGroup">
+        <form [formGroup]="contentFormGroup">
+          <ng-template matStepLabel>Add a content to movie</ng-template>
+          <div class="center-form">
+            <mat-form-field>
+              <textarea matInput placeholder="content" formControlName="content" required></textarea>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </div>
+        </form>
+      </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <div class="center-form">
+            You are now done, click submit for adding it to your amazing list!
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="onSubmit()">Submit</button>
+          </div>
+        </div>
+      </mat-step>
+  </mat-horizontal-stepper>

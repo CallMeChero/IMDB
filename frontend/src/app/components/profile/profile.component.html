@@ -1,10 +1,42 @@
-<div class="form-container">
-  <mat-list>
-    <h3 mat-subheader>Movie list</h3>
-    <mat-list-item *ngFor="let movie of movies">
-      <mat-icon mat-list-icon>Folder</mat-icon>
-      <h4 mat-line>{{movie.name}}</h4>
-      <mat-divider></mat-divider>
-    </mat-list-item>
-  </mat-list>
+<mat-card style="margin-top:25px;">
+    <mat-card-header>
+        <!-- <div mat-card-avatar class="example-header-image"></div> -->
+        <mat-card-title *ngIf="!areMoviesFilled">Sorry, we couldn't find your movie list.</mat-card-title>
+        <mat-card-title *ngIf="areMoviesFilled">Add a new movie to your list.</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="mat-card-paragraph" *ngIf="!areMoviesFilled">Let's start by adding one. Click bellow!</p>
+      <p class="mat-card-paragraph" *ngIf="areMoviesFilled">Click bellow to add new one!</p>
+      <button mat-raised-button class="mat-primary pull-button" (click)="addMovie()">ADD</button>
+    </mat-card-content>
+</mat-card>
+
+<div *ngIf="areMoviesFilled">
+  <mat-card class="movie-card" *ngFor="let movie of movies">
+    <div class="movie-header">
+      <img mat-card-image src="https://www.hindustantimes.com/rf/image_size_960x540/HT/p2/2018/10/15/Pictures/_0d193ca4-d07a-11e8-b4cf-7c02492d3b0a.jpg">
+    </div>
+  <div class="movie-content">
+    <mat-card-content>
+      <mat-card-header>
+          <!-- <div mat-card-avatar class="example-header-image"></div> -->
+          <mat-card-title style="margin-bottom: 25px;">{{ movie.name }}</mat-card-title>
+          <mat-card-subtitle>
+            <mat-chip-list>
+              <mat-chip color="primary" selected>SF</mat-chip>
+              <mat-chip color="primary" selected>Comedy</mat-chip>
+            </mat-chip-list>
+          </mat-card-subtitle>
+      </mat-card-header>
+      <hr>
+      <p class="mat-card-paragraph">
+        {{ movie.content }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button class="mat-accent">EDIT</button>
+        <button mat-raised-button class="mat-warn" (click)="deleteMovieDialog(movie)">DELETE</button>
+    </mat-card-actions>
+  </div>
+  </mat-card>
 </div>

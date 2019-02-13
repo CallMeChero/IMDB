@@ -14,6 +14,7 @@ Route::group([
     Route::post('changePassword', 'ChangePasswordController@process');
 
     // movies
-    Route::get('movies', 'MovieController@index');
     Route::get('movies/{username}', 'MovieController@showUserMovies');
+    Route::post('movies', 'MovieController@addUserMovie');
+    Route::post('delete_movie', 'MovieController@deleteUserMovie');
 });

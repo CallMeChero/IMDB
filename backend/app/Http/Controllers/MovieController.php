@@ -15,4 +15,23 @@ class MovieController extends Controller
 
         return $movies;
     }
+
+    public function addUserMovie(Request $request) {
+        $user = User::where('username',request()->username)->first();
+        $movie = Movie::create([
+            'name' => request()->name,
+            'user_id' => $user->id,
+            'content' => request()->content
+        ]);
+
+        return $movie;
+    }
+
+    public function deleteUserMovie(Request $request) {
+        $movie = Movie::find(request()->id)->delete();
+
+        return response()->json([
+            'data' => 'Movie has been successfully deleted!'
+        ]);
+    }
 }

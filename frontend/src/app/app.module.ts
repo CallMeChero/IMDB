@@ -25,6 +25,8 @@ import { AuthService } from './services/auth.service';
 import { TokenService } from './services/token.service';
 import { BeforeLoginService } from './services/before-login.service';
 import { AfterLoginService } from './services/after-login.service';
+import { MoviesComponent } from './components/movies/movies.component';
+import { DeleteMovieComponent } from './components/delete-movie/delete-movie.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { AfterLoginService } from './services/after-login.service';
     SignupComponent,
     ProfileComponent,
     RequestResetComponent,
-    ResponseResetComponent
+    ResponseResetComponent,
+    MoviesComponent,
+    DeleteMovieComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,8 @@ import { AfterLoginService } from './services/after-login.service';
   exports: [
     BrowserAnimationsModule,
     MatFormFieldModule,
-    DemoMaterialModule
+    DemoMaterialModule,
+    MoviesComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
@@ -59,6 +64,7 @@ import { AfterLoginService } from './services/after-login.service';
     BeforeLoginService,
     AfterLoginService
   ],
+  entryComponents: [MoviesComponent,DeleteMovieComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

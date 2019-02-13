@@ -1,0 +1,22 @@
+.mat-dialog-buttons {
+    margin-top: 25px;
+    display:flex;
+    justify-content: space-between
+}
+
+.form-content {
+    margin: 25px;
+    text-align: center;
+}
+
+.button-pull-right {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-form {
+    text-align: center;
+}

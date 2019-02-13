@@ -102,6 +102,7 @@ export class SignupComponent implements OnInit {
   }
 
   handleError(errors) {
+    console.log(errors)
     this.err = Object.values(errors.error.errors);
     this.error = '';
       this.err.forEach(function(obj, index) {

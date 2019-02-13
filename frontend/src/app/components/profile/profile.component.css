@@ -1,0 +1,42 @@
+.movie-card {
+    display: flex;
+    flex-wrap: wrap;
+    padding:0;
+}
+
+.movie-header {
+    flex: 20%;
+    max-width: 400px;
+    background-color: #A9A9A9;
+    padding: 20px;
+    border-bottom: 2px solid black;
+}
+
+.movie-header>img {
+    max-width:100%; 
+    min-height:100%;
+    object-fit: contain;
+    border-radius: 25px;
+    margin: 0;
+}
+
+.pull-button {
+    margin-left: 30px;
+}
+
+.movie-content {
+    flex: 80%;
+    padding: 20px;
+    border-left: 2px solid black;
+}
+
+.mat-card-paragraph {
+    padding-left: 30px;
+}
+
+mat-card-actions {
+    padding-left: 40px;
+}
+mat-card-actions>button:first-of-type {
+    margin-right: 50px;
+}

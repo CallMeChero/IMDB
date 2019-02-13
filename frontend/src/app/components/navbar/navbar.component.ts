@@ -33,13 +33,13 @@ export class NavbarComponent implements OnInit {
 
   getLoggedUser() {
     this.tokenData = JSON.parse(this.token.getStorage());
-    return '/' + this.tokenData.user;
+    return this.tokenData.user;
   }
 
   relocate(event, route: any){
     if(event.source.selected) {
       if(route == '/profile') {
-        this.router.navigateByUrl(route + this.getLoggedUser());
+        this.router.navigateByUrl(route + '/' + this.getLoggedUser());
       } else if(route == '/logout') {
         this.logout();
       }
@@ -47,9 +47,9 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-  	this.token.changeAuthStatus(false);
-    this.router.navigateByUrl('/login');
+    this.token.changeAuthStatus(false);
     this.token.removeStorage();
+    this.router.navigateByUrl('/login');
   }
 
 }
