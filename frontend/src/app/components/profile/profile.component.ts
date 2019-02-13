@@ -53,13 +53,16 @@ export class ProfileComponent implements OnInit {
 
   deleteMovieDialog(movie): void {
     const dialogRef = this.dialog.open(DeleteMovieComponent, {
-      width: '750px',
+      width: '400',
       data: {movie: movie}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if(result == true) {
         this.deleteMovie(movie);
+        if(this.movies.length == 0) {
+          this.areMoviesFilled = false;
+        }
       }
     });
   }

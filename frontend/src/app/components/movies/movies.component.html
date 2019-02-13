@@ -5,21 +5,19 @@
           <p>
             Glad to have you here, we hope you dont mind take a quick survey.
           </p>
-          <div style="margin-top:20px;">
-            <button mat-button matStepperNext>Next</button>
-          </div>
+            <button mat-stroked-button color="primary" matStepperNext>Next</button>
         </div>
     </mat-step>
     <mat-step [stepControl]="nameFormGroup">
       <form [formGroup]="nameFormGroup">
         <ng-template matStepLabel>Add a movie name</ng-template>
         <div class="center-form">
-          <mat-form-field>
+          <mat-form-field class="expand">
             <input matInput placeholder="name" formControlName="name" id="name" name="name" required>
           </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
+          <div class="button-space-between">
+            <button mat-stroked-button color="accent" matStepperPrevious>Back</button>
+            <button mat-stroked-button color="primary" matStepperNext>Next</button>
           </div>
       </div>
       </form>
@@ -28,12 +26,12 @@
         <form [formGroup]="contentFormGroup">
           <ng-template matStepLabel>Add a content to movie</ng-template>
           <div class="center-form">
-            <mat-form-field>
+            <mat-form-field class="expand2">
               <textarea matInput placeholder="content" formControlName="content" required></textarea>
             </mat-form-field>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
+            <div class="button-space-between">
+              <button mat-stroked-button color="accent" matStepperPrevious>Back</button>
+              <button mat-stroked-button color="primary" matStepperNext>Next</button>
             </div>
           </div>
         </form>
@@ -42,9 +40,9 @@
         <ng-template matStepLabel>Done</ng-template>
         <div class="center-form">
             You are now done, click submit for adding it to your amazing list!
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="onSubmit()">Submit</button>
+          <div class="button-space-between">
+            <button mat-stroked-button color="accent" matStepperPrevious>Back</button>
+            <button mat-stroked-button color="primary" (click)="onSubmit()">Submit</button>
           </div>
         </div>
       </mat-step>
