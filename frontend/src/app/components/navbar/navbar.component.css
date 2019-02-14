@@ -10,6 +10,8 @@
 mat-toolbar {
    overflow: hidden;
    position: sticky;
+   position: -webkit-sticky;
+   z-index: 1000;
    top: 0;
    margin:0;
  }

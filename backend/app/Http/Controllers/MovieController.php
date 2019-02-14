@@ -11,7 +11,7 @@ class MovieController extends Controller
     public function showUserMovies($username) {
         
         $user = User::where('username', $username)->first();
-        $movies = $user->movies;
+        $movies = $user->movies->sortBy('created_at')->toArray();
 
         return $movies;
     }
