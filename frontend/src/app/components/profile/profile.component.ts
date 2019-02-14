@@ -46,6 +46,7 @@ export class ProfileComponent implements OnInit {
   };
   
   handleResponse(data) {
+    console.log(data);
     this.movies = data;
     if(data.length > 0) {
       this.areMoviesFilled = true;
