@@ -10,7 +10,7 @@
 }
 
 .button-space-between {
-    margin-top: 30px;
+    margin-top: 1.5%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

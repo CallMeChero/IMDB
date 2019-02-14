@@ -83,7 +83,7 @@ export class ProfileComponent implements OnInit {
 
   addMovie(): void {
     const dialogRef = this.dialog.open(MoviesComponent, {
-      width: '750px',
+      width: '80%',
       data: {username: this.username}
     });
 

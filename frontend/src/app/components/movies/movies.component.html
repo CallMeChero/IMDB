@@ -22,6 +22,25 @@
       </div>
       </form>
     </mat-step>
+    <mat-step [stepControl]="genreFormGroup">
+        <form [formGroup]="genreFormGroup">
+          <ng-template matStepLabel>Add a movie genre(s)</ng-template>
+          <div class="center-form" style="height: 300px;">
+              <ng-select style="z-index: 1000;" 
+                          [items]="genres"
+                          bindLabel="name"
+                          bindValue="id"
+                          [multiple]="true"
+                          placeholder="Select cities"
+                          formControlName="selectedGenre">
+              </ng-select>
+            <div class="button-space-between">
+              <button mat-stroked-button color="accent" matStepperPrevious>Back</button>
+              <button mat-stroked-button color="primary" matStepperNext>Next</button>
+            </div>
+          </div>
+        </form>
+      </mat-step>
     <mat-step [stepControl]="contentFormGroup">
         <form [formGroup]="contentFormGroup">
           <ng-template matStepLabel>Add a content to movie</ng-template>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Movie;
 use App\User;
+use App\Genre;
 
 class MovieController extends Controller
 {
@@ -23,6 +24,9 @@ class MovieController extends Controller
             'user_id' => $user->id,
             'content' => request()->content
         ]);
+        $movie->save();
+        $genres = Genre::find(request()->genres);
+        $movie->genres()->attach($genres);
 
         return $movie;
     }

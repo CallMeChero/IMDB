@@ -13,6 +13,9 @@ Route::group([
     Route::post('resetPasswordResetLink', 'ResetPasswordController@sendEmail');
     Route::post('changePassword', 'ChangePasswordController@process');
 
+    //genres
+    Route::get('genres', 'GenreController@index');
+
     // movies
     Route::get('movies/{username}', 'MovieController@showUserMovies');
     Route::post('movies', 'MovieController@addUserMovie');

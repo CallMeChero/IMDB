@@ -7,9 +7,13 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import {DemoMaterialModule} from './material-module';
 import {MatInputModule} from '@angular/material';
+import {MatSelectModule} from '@angular/material/select';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+//ng-select
+import { NgSelectModule } from '@ng-select/ng-select';
 
 //my components
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -51,7 +55,9 @@ import { EditMovieComponent } from './components/edit-movie/edit-movie.component
     DemoMaterialModule,
     ReactiveFormsModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    NgSelectModule,
+    MatSelectModule
   ],
   exports: [
     BrowserAnimationsModule,

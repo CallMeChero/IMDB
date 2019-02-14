@@ -44,4 +44,8 @@ export class AuthService {
   editMovie(data) {
     return this.http.put(this.baseURL + '/edit_movie', data);
   }
+
+  getGenres() {
+    return this.http.get(this.baseURL + '/genres');
+  }
 }

@@ -13,7 +13,9 @@ export class MoviesComponent implements OnInit {
 
   nameFormGroup;
   contentFormGroup;
+  genreFormGroup;
   tokenData;
+  public genres;
   public error;
   public err;
   actionButtonLabel: string = 'Retry';
@@ -46,7 +48,25 @@ export class MoviesComponent implements OnInit {
         Validators.required
       ]
     });
+    this.genreFormGroup = this.fb.group({
+      selectedGenre: [
+      ]
+    });
+    this.getGenres();
    } 
+
+  getGenres() {
+    this.auth.getGenres()
+    .subscribe(
+      data => this.handleGenreResponse(data),
+      error => console.log(error)
+    );
+  }
+
+  handleGenreResponse(data) {
+    this.genres = data;
+    console.log(this.genres);
+  }
 
   getLoggedUser() {
     this.tokenData = JSON.parse(this.token.getStorage());
@@ -55,10 +75,12 @@ export class MoviesComponent implements OnInit {
 
    onSubmit() {
     this.nameFormGroup.value.content = this.contentFormGroup.value.content;
+    console.log(this.genreFormGroup.value.selectedGenre);
      this.auth.sumbmitMovie({
       "name" : this.nameFormGroup.value.name,
       "content": this.contentFormGroup.value.content,
-      "username": this.getLoggedUser()
+      "username": this.getLoggedUser(),
+      "genres": this.genreFormGroup.value.selectedGenre
         }).subscribe(
            data => this.handleResponse(),
            error => console.log(error)
