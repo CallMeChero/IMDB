@@ -1,4 +1,4 @@
-<mat-card style="margin-top:25px;">
+<mat-card style="margin:15px 15%;">
     <mat-card-header>
         <!-- <div mat-card-avatar class="example-header-image"></div> -->
         <mat-card-title *ngIf="!areMoviesFilled">Sorry, we couldn't find your movie list.</mat-card-title>
@@ -34,7 +34,7 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button class="mat-accent">EDIT</button>
+        <button mat-raised-button class="mat-accent" (click)="editMovieDialog(movie)">EDIT</button>
         <button mat-raised-button class="mat-warn" (click)="deleteMovieDialog(movie)">DELETE</button>
     </mat-card-actions>
   </div>

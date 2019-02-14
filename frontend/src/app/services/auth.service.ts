@@ -40,4 +40,8 @@ export class AuthService {
   deleteMovie(id: number) {
     return this.http.post(this.baseURL + '/delete_movie', id);
   }
+
+  editMovie(data) {
+    return this.http.put(this.baseURL + '/edit_movie', data);
+  }
 }

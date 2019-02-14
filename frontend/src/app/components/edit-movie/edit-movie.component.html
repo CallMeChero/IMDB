@@ -1,0 +1,32 @@
+<mat-card class="editMovie">
+<form [formGroup]="editMovie">
+  <span>Edit movie</span>
+  <hr>
+  <mat-form-field class="expand-field">
+    <input matInput type="text" placeholder="name" formControlName="name" required>
+    <mat-error *ngIf="editMovie.hasError('required')">
+        This field is required
+    </mat-error>
+    <mat-error *ngFor="let validation of edit_movie_validation_messages.name">
+        <mat-error class="error-message" *ngIf="editMovie.get('name').hasError(validation.type) && (editMovie.get('name').dirty || editMovie.get('name').touched)">{{validation.message}}</mat-error>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="expand-field">
+      <textarea matInput type="text" placeholder="content" formControlName="content" id="content" name="content" required>
+      </textarea>
+      <mat-error *ngIf="editMovie.hasError('required')">
+          This field is required
+      </mat-error>
+      <mat-error *ngFor="let validation of edit_movie_validation_messages.content">
+          <mat-error class="error-message" *ngIf="editMovie.get('content').hasError(validation.type) && (editMovie.get('content').dirty || editMovie.get('content').touched)">{{validation.message}}</mat-error>
+      </mat-error>
+  </mat-form-field>
+
+
+  <div class="form-button">
+      <a mat-raised-button color="primary" (click)="onSubmit()" style="margin-right:45px;">Edit movie</a>
+      <a mat-raised-button color="primary" (click)="goBack()" style="float:right;">No, thanks!</a>
+  </div>
+</form>
+</mat-card>

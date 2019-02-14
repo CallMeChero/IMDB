@@ -17,4 +17,5 @@ Route::group([
     Route::get('movies/{username}', 'MovieController@showUserMovies');
     Route::post('movies', 'MovieController@addUserMovie');
     Route::post('delete_movie', 'MovieController@deleteUserMovie');
+    Route::put('edit_movie', 'MovieController@editUserMovie');
 });

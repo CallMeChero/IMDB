@@ -1,0 +1,9 @@
+.editMovie {
+    display: flex;
+    flex-direction: column;
+  }
+  
+.expand-field {
+    width: 100%;
+  }
+  

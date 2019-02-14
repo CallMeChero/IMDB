@@ -34,4 +34,14 @@ class MovieController extends Controller
             'data' => 'Movie has been successfully deleted!'
         ]);
     }
+
+    public function editUserMovie(Request $request) {
+        $movie = Movie::find(request()->id)
+            ->update([
+                'name' => request()->name,
+                'content' => request()->content
+                ]);
+        $movie = Movie::find(request()->id);
+        return $movie;
+    }
 }

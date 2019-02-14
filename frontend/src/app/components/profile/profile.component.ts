@@ -4,6 +4,7 @@ import { Route,ActivatedRoute } from '@angular/router';
 import { MoviesComponent } from '../movies/movies.component';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { DeleteMovieComponent } from '../delete-movie/delete-movie.component';
+import { EditMovieComponent } from '../edit-movie/edit-movie.component';
 
 @Component({
   selector: 'app-profile',
@@ -64,6 +65,18 @@ export class ProfileComponent implements OnInit {
           this.areMoviesFilled = false;
         }
       }
+    });
+  }
+
+  editMovieDialog(movie): void {
+    console.log(movie);
+    const dialogRef = this.dialog.open(EditMovieComponent, {
+      width: '600',
+      data: {movie: movie}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getUserMovies();
     });
   }
 

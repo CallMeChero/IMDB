@@ -27,6 +27,7 @@ import { BeforeLoginService } from './services/before-login.service';
 import { AfterLoginService } from './services/after-login.service';
 import { MoviesComponent } from './components/movies/movies.component';
 import { DeleteMovieComponent } from './components/delete-movie/delete-movie.component';
+import { EditMovieComponent } from './components/edit-movie/edit-movie.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { DeleteMovieComponent } from './components/delete-movie/delete-movie.com
     RequestResetComponent,
     ResponseResetComponent,
     MoviesComponent,
-    DeleteMovieComponent
+    DeleteMovieComponent,
+    EditMovieComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,11 @@ import { DeleteMovieComponent } from './components/delete-movie/delete-movie.com
     BeforeLoginService,
     AfterLoginService
   ],
-  entryComponents: [MoviesComponent,DeleteMovieComponent],
+  entryComponents: [
+    MoviesComponent,
+    DeleteMovieComponent,
+    EditMovieComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
