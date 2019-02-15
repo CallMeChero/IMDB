@@ -13,8 +13,8 @@
 
 <div *ngIf="areMoviesFilled">
   <mat-card class="movie-card" *ngFor="let movie of movies">
-    <div class="movie-header" style="max-width: 350px;max-height: 260px;">
-      <img mat-card-image height="260" width="300"
+    <div class="movie-header" style="max-width: 350px;min-height: 260px;">
+      <img mat-card-image height="280" width="300"
       src="assets/img/{{ movie.image.filename }}">
     </div>
   <div class="movie-content">

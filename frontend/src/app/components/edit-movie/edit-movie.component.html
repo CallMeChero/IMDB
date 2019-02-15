@@ -1,5 +1,6 @@
+<div class="form">
 <mat-card class="editMovie">
-<form [formGroup]="editMovie">
+<form class="edit-form" [formGroup]="editMovie">
   <span>Edit movie</span>
   <hr>
   <mat-form-field class="expand-field">
@@ -22,11 +23,22 @@
           <mat-error class="error-message" *ngIf="editMovie.get('content').hasError(validation.type) && (editMovie.get('content').dirty || editMovie.get('content').touched)">{{validation.message}}</mat-error>
       </mat-error>
   </mat-form-field>
-
-
-  <div class="form-button">
-      <a mat-raised-button color="primary" (click)="onSubmit()" style="margin-right:45px;">Edit movie</a>
-      <a mat-raised-button color="primary" (click)="goBack()" style="float:right;">No, thanks!</a>
+  <div class="container">
+    <form [formGroup]="genreFormGroup">
+        <ng-template matStepLabel>Add genre(s)</ng-template>
+        <ng-select 
+            [items]="genres"
+            bindLabel="name"
+            [multiple]="true"
+            placeholder="Select movie genre(s)"
+            formControlName="selectedGenre">
+        </ng-select>
+    </form> 
+  </div>
+  <div class="form-button" style="display:flex;flex-wrap: wrap;justify-content: space-around;">
+      <a mat-raised-button color="primary" (click)="onSubmit()">Edit movie</a>
+      <a mat-raised-button color="primary" (click)="onNoClick()">No, thanks!</a>
   </div>
 </form>
 </mat-card>
+</div>

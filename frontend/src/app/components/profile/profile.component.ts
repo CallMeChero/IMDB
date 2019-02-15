@@ -71,7 +71,8 @@ export class ProfileComponent implements OnInit {
 
   editMovieDialog(movie): void {
     const dialogRef = this.dialog.open(EditMovieComponent, {
-      width: '600',
+      width: '750px',
+      height: '500px',
       data: {movie: movie}
     });
 

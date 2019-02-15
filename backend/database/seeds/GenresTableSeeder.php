@@ -30,9 +30,6 @@ class GenresTableSeeder extends Seeder
             'name' => 'Adventure'
         ]);
         DB::table('genres')->insert([
-            'name' => 'Animation'
-        ]);
-        DB::table('genres')->insert([
             'name' => 'Crime'
         ]);
         DB::table('genres')->insert([

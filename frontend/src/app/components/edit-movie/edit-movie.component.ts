@@ -14,6 +14,7 @@ export class EditMovieComponent implements OnInit {
   public movie;
   public error;
   public tokenData;
+  public genres;
 
   edit_movie_validation_messages = {
     'name': [
@@ -26,20 +27,23 @@ export class EditMovieComponent implements OnInit {
     }
 
     editMovie = this.fb.group({
-    id: [this.data.movie.id],
-    name:[
-        this.data.movie.name,
+      id: [this.data.movie.id],
+      name:[
+          this.data.movie.name,
+          Validators.compose([
+            Validators.required,
+            Validators.pattern('[A-Za-z0-9]{3,20}')
+          ])
+        ],
+      content: [
+        this.data.movie.content,
         Validators.compose([
-          Validators.required,
-          Validators.pattern('[A-Za-z0-9]{3,20}')
+          Validators.required
         ])
-      ],
-    content: [
-      this.data.movie.content,
-      Validators.compose([
-        Validators.required
-    ])
-  ]
+      ]
+  });
+  genreFormGroup = this.fb.group({
+    selectedGenre: [this.data.movie.genres]
   });
 
   constructor(
@@ -55,8 +59,21 @@ export class EditMovieComponent implements OnInit {
     return this.tokenData.user;
   }
 
+  getGenres() {
+    this.auth.getGenres()
+    .subscribe(
+      data => this.handleGenreResponse(data),
+      error => console.log(error)
+    );
+  }
+
+  handleGenreResponse(data) {
+    this.genres = data;
+  }
+
   ngOnInit() {
-    
+    console.log(this.genreFormGroup.value.selectedGenre)
+    this.getGenres();
   }
 
   onNoClick(): void {
@@ -67,7 +84,8 @@ export class EditMovieComponent implements OnInit {
      this.auth.editMovie({
       "id" : this.editMovie.value.id,
       "name" : this.editMovie.value.name,
-      "content": this.editMovie.value.content
+      "content": this.editMovie.value.content,
+      "genres": this.genreFormGroup.value.selectedGenre
         }).subscribe(
            data => this.handleResponse(data),
            error => console.log(error)

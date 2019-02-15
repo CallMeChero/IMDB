@@ -67,7 +67,6 @@ export class MoviesComponent implements OnInit {
 
   handleGenreResponse(data) {
     this.genres = data;
-    console.log(this.genres);
   }
 
   onPictureUpload(picture) {

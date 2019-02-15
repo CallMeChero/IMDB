@@ -11,8 +11,8 @@
     max-width: 400px;
     background-color: #808080;
     border-bottom: 2px solid black;
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
     -webkit-filter: grayscale(75%); /* Safari 6.0 - 9.0 */
     filter: grayscale(75%);
 }

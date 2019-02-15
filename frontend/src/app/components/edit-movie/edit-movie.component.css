@@ -1,9 +1,18 @@
 .editMovie {
     display: flex;
     flex-direction: column;
-  }
+}
   
 .expand-field {
     width: 100%;
+    padding: 20px;
   }
+.edit-form {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  padding: 30px;
+}
   
