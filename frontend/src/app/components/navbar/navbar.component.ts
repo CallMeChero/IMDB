@@ -32,8 +32,10 @@ export class NavbarComponent implements OnInit {
   }
 
   getLoggedUser() {
-    this.tokenData = JSON.parse(this.token.getStorage());
-    return this.tokenData.user;
+    if(this.token.getStorage() != null) {
+      this.tokenData = JSON.parse(this.token.getStorage());
+      return this.tokenData.user;  
+    }
   }
 
   relocate(event, route: any){

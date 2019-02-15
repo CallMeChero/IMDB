@@ -8,9 +8,10 @@
             <button mat-stroked-button color="primary" matStepperNext>Next</button>
         </div>
     </mat-step>
+
     <mat-step [stepControl]="nameFormGroup">
       <form [formGroup]="nameFormGroup">
-        <ng-template matStepLabel>Add a movie name</ng-template>
+        <ng-template matStepLabel>Add name</ng-template>
         <div class="center-form">
           <mat-form-field class="expand">
             <input matInput placeholder="name" formControlName="name" id="name" name="name" required>
@@ -22,17 +23,18 @@
       </div>
       </form>
     </mat-step>
+
     <mat-step [stepControl]="genreFormGroup">
         <form [formGroup]="genreFormGroup">
-          <ng-template matStepLabel>Add a movie genre(s)</ng-template>
-          <div class="center-form" style="height: 300px;">
-              <ng-select style="z-index: 1000;" 
-                          [items]="genres"
-                          bindLabel="name"
-                          bindValue="id"
-                          [multiple]="true"
-                          placeholder="Select cities"
-                          formControlName="selectedGenre">
+          <ng-template matStepLabel>Add genre(s)</ng-template>
+          <div class="center-form" style="min-height: 300px;">
+              <ng-select 
+                  [items]="genres"
+                  bindLabel="name"
+                  bindValue="id"
+                  [multiple]="true"
+                  placeholder="Select movie genre(s)"
+                  formControlName="selectedGenre">
               </ng-select>
             <div class="button-space-between">
               <button mat-stroked-button color="accent" matStepperPrevious>Back</button>
@@ -40,13 +42,27 @@
             </div>
           </div>
         </form>
-      </mat-step>
+    </mat-step>
+
+    <mat-step >
+      <form enctype="multipart/form-data">
+        <ng-template matStepLabel>Upload picture</ng-template>
+        <div class="center-form">
+            <input name="imageSrc" type="file" accept="image/*" (change)="handleInputChange($event)" />
+          <div class="button-space-between">
+            <button mat-stroked-button color="accent" matStepperPrevious>Back</button>
+            <button mat-stroked-button color="primary" matStepperNext>Next</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
     <mat-step [stepControl]="contentFormGroup">
         <form [formGroup]="contentFormGroup">
-          <ng-template matStepLabel>Add a content to movie</ng-template>
+          <ng-template matStepLabel>Add content</ng-template>
           <div class="center-form">
             <mat-form-field class="expand2">
-              <textarea matInput placeholder="content" formControlName="content" required></textarea>
+              <textarea matInput placeholder="Type us your review about movie here" formControlName="content" required></textarea>
             </mat-form-field>
             <div class="button-space-between">
               <button mat-stroked-button color="accent" matStepperPrevious>Back</button>
@@ -56,13 +72,13 @@
         </form>
       </mat-step>
     <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <div class="center-form">
-            You are now done, click submit for adding it to your amazing list!
-          <div class="button-space-between">
-            <button mat-stroked-button color="accent" matStepperPrevious>Back</button>
-            <button mat-stroked-button color="primary" (click)="onSubmit()">Submit</button>
-          </div>
+      <ng-template matStepLabel>Done</ng-template>
+      <div class="center-form">
+          You are now done, click submit for adding it to your amazing list!
+        <div class="button-space-between">
+          <button mat-stroked-button color="accent" matStepperPrevious>Back</button>
+          <button mat-stroked-button color="primary" (click)="onSubmit()">Submit</button>
         </div>
-      </mat-step>
-  </mat-horizontal-stepper>
+      </div>
+    </mat-step>
+</mat-horizontal-stepper>

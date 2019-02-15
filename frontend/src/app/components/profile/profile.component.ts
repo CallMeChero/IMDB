@@ -46,8 +46,8 @@ export class ProfileComponent implements OnInit {
   };
   
   handleResponse(data) {
-    console.log(data);
     this.movies = data;
+    console.log(this.movies[0]);
     if(data.length > 0) {
       this.areMoviesFilled = true;
     }
@@ -70,7 +70,6 @@ export class ProfileComponent implements OnInit {
   }
 
   editMovieDialog(movie): void {
-    console.log(movie);
     const dialogRef = this.dialog.open(EditMovieComponent, {
       width: '600',
       data: {movie: movie}
