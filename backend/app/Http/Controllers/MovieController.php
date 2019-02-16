@@ -59,14 +59,23 @@ class MovieController extends Controller
     }
 
     public function editUserMovie(Request $request) {
-        $movie = Movie::find(request()->id)
-                        ->update([
-                            'name' => request()->name,
-                            'content' => request()->content
-                            ]);
         $movie = Movie::find(request()->id);
-        $genres = Genre::find(request()->genres);
-        $movie->genres()->attach($genres);        
+        $movie->update([
+                    'name' => request()->name,
+                    'content' => request()->content,
+                    'genres' => request()->genres
+                    ]);
+        $movie->save();
+
+        if(request()->genres) {
+            foreach(request()->genres as $i => $genre) {
+                $movie_genres[] = $genre['id'];
+            }
+            $genres = Genre::find($movie_genres);
+            $movie->genres()->sync($genres);
+        } else if ($movie->genres()){
+            $movie->genres()->detach();
+        }
         
         return $movie;
     }

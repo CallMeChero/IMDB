@@ -72,7 +72,6 @@ export class EditMovieComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.genreFormGroup.value.selectedGenre)
     this.getGenres();
   }
 

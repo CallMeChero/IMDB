@@ -13,7 +13,8 @@ const routes: Routes = [
   { path:'signup', component: SignupComponent,  canActivate: [BeforeLoginService] },
   { path:'profile/:username', component: ProfileComponent,  canActivate: [AfterLoginService]},
   { path:'request-password-reset', component: RequestResetComponent, canActivate: [BeforeLoginService] },
-  { path:'response-password-reset', component: ResponseResetComponent, canActivate: [BeforeLoginService]}
+  { path:'response-password-reset', component: ResponseResetComponent, canActivate: [BeforeLoginService]},
+  { path: '**',component: LoginComponent}
 ];
 
 @NgModule({

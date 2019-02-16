@@ -21,7 +21,6 @@ class CreateGenreMovieTable extends Migration
                 ->onDelete('cascade');
             $table->foreign('movie_id')->references('id')->on('movies')
                 ->onDelete('cascade');
-            
         });
     }
 

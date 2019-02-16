@@ -97,7 +97,6 @@ export class MoviesComponent implements OnInit {
 
    onSubmit() {
     this.nameFormGroup.value.content = this.contentFormGroup.value.content;
-    console.log(this.genreFormGroup.value.selectedGenre);
      this.auth.sumbmitMovie({
       "name" : this.nameFormGroup.value.name,
       "content": this.contentFormGroup.value.content,
