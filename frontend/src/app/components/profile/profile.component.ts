@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Route,ActivatedRoute } from '@angular/router';
 import { MoviesComponent } from '../movies/movies.component';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { DeleteMovieComponent } from '../delete-movie/delete-movie.component';
 import { EditMovieComponent } from '../edit-movie/edit-movie.component';
 
@@ -16,6 +16,8 @@ export class ProfileComponent implements OnInit {
   public movies;
   public error;
   public username;
+  actionButtonLabel: string = 'Okay';
+  action: boolean = true;
 
   public areMoviesFilled:boolean = false;
 
@@ -23,6 +25,7 @@ export class ProfileComponent implements OnInit {
     private auth: AuthService,
     private _rout: ActivatedRoute,
     public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) { 
     this.username = this._rout.snapshot.paramMap.get("username"); }
 
@@ -40,7 +43,8 @@ export class ProfileComponent implements OnInit {
 
   deleteMovie(movie): void {
      this.auth.deleteMovie(movie)
-       .subscribe( data => {
+       .subscribe( message=> {
+         this.openSnackBar(message)
          this.movies = this.movies.filter(m => m !== movie)
         })
   };
@@ -72,7 +76,7 @@ export class ProfileComponent implements OnInit {
   editMovieDialog(movie): void {
     const dialogRef = this.dialog.open(EditMovieComponent, {
       width: '750px',
-      height: '500px',
+      height: '650px',
       data: {movie: movie}
     });
 
@@ -92,5 +96,10 @@ export class ProfileComponent implements OnInit {
       this.getUserMovies();
     });
   }
+
+  openSnackBar(data) {
+    this.snackBar.open(data.data,this.action ? this.actionButtonLabel : undefined);
+  }
+
 
 }
