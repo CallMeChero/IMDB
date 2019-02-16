@@ -22,6 +22,7 @@ export class MoviesComponent implements OnInit {
   private imageSrc: string = '';
   actionButtonLabel: string = 'Retry';
   action: boolean = true;
+  isOpened: boolean = false;
 
 
   constructor(
@@ -112,6 +113,14 @@ export class MoviesComponent implements OnInit {
    handleResponse(data) {
     console.log(data);
     this.dialogRef.close();
+   }
+
+   OpenDiv() {
+     this.isOpened = true;
+   }
+
+   CloseDiv() {
+     this.isOpened = false;
    }
 
 }

@@ -27,11 +27,13 @@
     <mat-step [stepControl]="genreFormGroup">
         <form [formGroup]="genreFormGroup">
           <ng-template matStepLabel>Add genre(s)</ng-template>
-          <div class="center-form" style="min-height: 300px;">
+          <div class="center-form-ng-select" [class.biggerHeight]="isOpened">
               <ng-select 
                   [items]="genres"
                   bindLabel="name"
                   bindValue="id"
+                  (open)="OpenDiv()"
+                  (close) ="CloseDiv()"
                   [multiple]="true"
                   placeholder="Select movie genre(s)"
                   formControlName="selectedGenre">
