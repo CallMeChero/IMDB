@@ -51,7 +51,12 @@ export class ProfileComponent implements OnInit {
   
   handleResponse(data) {
     this.movies = data;
-    console.log(this.movies[0]);
+    for (let [key, value] of Object.entries(this.movies)) {
+      if(!this.movies[key].image) {
+        console.log(this.movies[key]);
+        this.movies[key].image = { filename :'movie_default.jpg'}
+      }
+    }
     if(data.length > 0) {
       this.areMoviesFilled = true;
     }

@@ -8,7 +8,7 @@ use App\Movie;
 class Image extends Model
 {
     protected $fillable = [
-        'movie_id','filename','mime', 'original_filename'
+        'movie_id','filename','path'
     ];
 
     public function movie()
