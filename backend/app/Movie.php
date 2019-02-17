@@ -10,7 +10,7 @@ use App\Image;
 class Movie extends Model
 {
     protected $fillable = [
-        'name', 'user_id', 'content'
+        'name', 'user_id', 'content', 'rating'
     ];
 
     public function user()

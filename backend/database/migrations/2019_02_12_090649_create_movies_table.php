@@ -16,8 +16,9 @@ class CreateMoviesTable extends Migration
         Schema::create('movies', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();
-            $table->string("name");
+            $table->string("name")->unique();
             $table->string("content");
+            $table->integer("rating")->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')
                   ->onDelete('cascade');

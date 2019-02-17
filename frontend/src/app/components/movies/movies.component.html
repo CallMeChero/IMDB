@@ -62,6 +62,16 @@
     <mat-step [stepControl]="contentFormGroup">
         <form [formGroup]="contentFormGroup">
           <ng-template matStepLabel>Add content</ng-template>
+          <div>
+            <star-rating-control 
+              formControlName="movieRating"
+              (starClickChange)="onClick($event)"
+              (ratingChange)="onRatingChange($event)"
+              [hoverEnabled]="true" 
+              (hoverRatingChange)="onHoverRatingChange($event)"
+              >
+            </star-rating-control>
+          </div>
           <div class="center-form">
             <mat-form-field class="expand2">
               <textarea matInput placeholder="Type us your review about movie here" formControlName="content" required></textarea>

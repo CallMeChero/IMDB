@@ -32,6 +32,7 @@ import { AfterLoginService } from './services/after-login.service';
 import { MoviesComponent } from './components/movies/movies.component';
 import { DeleteMovieComponent } from './components/delete-movie/delete-movie.component';
 import { EditMovieComponent } from './components/edit-movie/edit-movie.component';
+import { StarRatingModule } from 'angular-star-rating';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { EditMovieComponent } from './components/edit-movie/edit-movie.component
     MatInputModule,
     HttpClientModule,
     NgSelectModule,
-    MatSelectModule
+    MatSelectModule,
+    StarRatingModule.forRoot()
   ],
   exports: [
     BrowserAnimationsModule,

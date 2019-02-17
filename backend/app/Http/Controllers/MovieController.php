@@ -25,7 +25,8 @@ class MovieController extends Controller
         $movie = Movie::create([
             'name' => request()->name,
             'user_id' => $user->id,
-            'content' => request()->content
+            'content' => request()->content,
+            'rating' => request()->rating
         ]);
 
         /*handle img*/

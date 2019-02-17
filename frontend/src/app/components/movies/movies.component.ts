@@ -3,6 +3,11 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenService } from 'src/app/services/token.service';
+import {
+  ClickEvent,
+  HoverRatingChangeEvent,
+  RatingChangeEvent
+} from 'angular-star-rating';
 
 @Component({
   selector: 'app-movies',
@@ -24,6 +29,9 @@ export class MoviesComponent implements OnInit {
   action: boolean = true;
   isOpened: boolean = false;
 
+  onClickResult: ClickEvent;
+  onHoverRatingChangeResult: HoverRatingChangeEvent;
+  onRatingChangeResult: RatingChangeEvent;
 
   constructor(
     private fb: FormBuilder,
@@ -48,6 +56,10 @@ export class MoviesComponent implements OnInit {
     this.contentFormGroup = this.fb.group({
       content: [
         '', 
+        Validators.required
+      ],
+      movieRating: [
+        3,
         Validators.required
       ]
     });
@@ -103,7 +115,8 @@ export class MoviesComponent implements OnInit {
       "content": this.contentFormGroup.value.content,
       "username": this.getLoggedUser(),
       "genres": this.genreFormGroup.value.selectedGenre,
-      "base64": this.imageSrc
+      "base64": this.imageSrc,
+      "rating": this.contentFormGroup.value.movieRating
         }).subscribe(
            data => this.handleResponse(data),
            error => console.log(error)
@@ -122,5 +135,18 @@ export class MoviesComponent implements OnInit {
    CloseDiv() {
      this.isOpened = false;
    }
+
+   onClick = ($event: ClickEvent) => {
+    this.contentFormGroup.value.movieRating = $event;
+
+  };
+
+  onRatingChange = ($event: RatingChangeEvent) => {
+    this.contentFormGroup.value.movieRating = $event;
+  };
+
+  onHoverRatingChange = ($event: HoverRatingChangeEvent) => {
+    this.contentFormGroup.value.movieRating = $event;
+  };
 
 }
