@@ -8,21 +8,29 @@
 
 .movie-header {
     flex: 20%;
-    max-width: 400px;
+    width: 400px;
+    height: 300px;
     background-color: #808080;
-    border-bottom: 2px solid black;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
     -webkit-filter: grayscale(75%); /* Safari 6.0 - 9.0 */
     filter: grayscale(75%);
 }
 
-.movie-header>img {
-    max-width:100%;
-    max-height: 100%; 
-    object-fit: contain;
-    border-radius: 25px;
-    margin: 0;
+mat-card-header {
+    font-family: "Rockwell,Courier Bold,Courier,Georgia,Times,Times New Roman,serif";
+    margin-left:-10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 35px;
+}
+
+.movie-name {
+    font-size: 1em;
+}
+
+mat-card-title {
+    margin-bottom: 15px;
 }
 
 .pull-button {
@@ -31,17 +39,52 @@
 
 .movie-content {
     flex: 80%;
-    padding: 20px;
+    padding-top: 20px;
+    padding-left:25px;
+    padding-right: 25px;
     border-left: 2px solid black;
 }
-
-.mat-card-paragraph {
-    padding-left: 30px;
-}
-
-mat-card-actions {
-    padding-left: 40px;
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    margin:0;
 }
 mat-card-actions>button:first-of-type {
     margin-right: 50px;
+}
+
+hr.style-seven {
+    overflow: visible; /* For IE */
+    height: 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}
+hr.style-seven:before { /* Not really supposed to work, but does */
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+
+.button-box {
+    justify-content: space-around;
+    display: flex;
+}
+
+.rating-box {
+    display: flex;
+}
+.star-rating {
+    padding-top:15px;
+    padding-left: 15px;
+}
+p {
+    font-family: "Book Antiqua ,Palatino,Palatino Linotype,Palatino LT ST, Georgia, serif";
 }

@@ -13,27 +13,30 @@
 
 <div *ngIf="areMoviesFilled">
   <mat-card class="movie-card" *ngFor="let movie of movies">
-    <div class="movie-header" style="max-width: 350px;min-height: 260px;">
-      <img mat-card-image height="280" width="300"
-      src="assets/img/{{ movie.image.filename }}">
+    <div class="movie-header">
+      <img src="assets/img/{{ movie.image.filename }}">
     </div>
   <div class="movie-content">
     <mat-card-content>
       <mat-card-header>
           <!-- <div mat-card-avatar class="example-header-image"></div> -->
-          <mat-card-title style="margin-bottom: 25px;">{{ movie.name }}</mat-card-title>
-          <mat-card-subtitle>
+          <mat-card-title class="movie-name">{{ movie.name }}</mat-card-title>
+          <div>
             <mat-chip-list>
               <mat-chip color="primary" selected *ngFor="let genre of movie.genres">{{ genre.name }}</mat-chip>
             </mat-chip-list>
-          </mat-card-subtitle>
+          </div>
       </mat-card-header>
-      <hr>
+      <hr class="style-seven">
+      <div class="rating-box">
+        <h3>Rating:</h3>
+        <star-rating *ngIf="movie.rating" class="star-rating" [rating]="movie.rating"></star-rating>
+      </div>
       <p class="mat-card-paragraph">
         {{ movie.content }}
       </p>
     </mat-card-content>
-    <mat-card-actions>
+    <mat-card-actions class="button-box">
         <button mat-raised-button class="mat-accent" (click)="editMovieDialog(movie)">EDIT</button>
         <button mat-raised-button class="mat-warn" (click)="deleteMovieDialog(movie)">DELETE</button>
     </mat-card-actions>

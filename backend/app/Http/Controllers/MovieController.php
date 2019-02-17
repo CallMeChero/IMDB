@@ -63,10 +63,12 @@ class MovieController extends Controller
 
     public function editUserMovie(Request $request) {
         $movie = Movie::find(request()->id);
+        $rating = (int) request()->rating['rating'];
         $movie->update([
                     'name' => request()->name,
                     'content' => request()->content,
-                    'genres' => request()->genres
+                    'genres' => request()->genres,
+                    'rating' => $rating
                     ]);
         $movie->save();
 

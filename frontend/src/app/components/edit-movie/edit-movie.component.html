@@ -22,7 +22,7 @@
       <mat-error *ngFor="let validation of edit_movie_validation_messages.content">
           <mat-error class="error-message" *ngIf="editMovie.get('content').hasError(validation.type) && (editMovie.get('content').dirty || editMovie.get('content').touched)">{{validation.message}}</mat-error>
       </mat-error>
-  </mat-form-field>
+  </mat-form-field>          
   <div class="container">
     <form [formGroup]="genreFormGroup">
         <ng-template matStepLabel>Add genre(s)</ng-template>
@@ -33,6 +33,13 @@
             placeholder="Select movie genre(s)"
             formControlName="selectedGenre">
         </ng-select>
+
+        <star-rating-control 
+              formControlName="rating"
+              (starClickChange)="onClick($event)"
+              (ratingChange)="onRatingChange($event)"
+              >
+  </star-rating-control> 
     </form> 
   </div>
   <div class="form-button" style="display:flex;flex-wrap: wrap;justify-content: space-around;">

@@ -3,6 +3,11 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenService } from 'src/app/services/token.service';
+import {
+  ClickEvent,
+  HoverRatingChangeEvent,
+  RatingChangeEvent
+} from 'angular-star-rating';
 
 @Component({
   selector: 'app-edit-movie',
@@ -15,6 +20,10 @@ export class EditMovieComponent implements OnInit {
   public error;
   public tokenData;
   public genres;
+
+  onClickResult: ClickEvent;
+  onHoverRatingChangeResult: HoverRatingChangeEvent;
+  onRatingChangeResult: RatingChangeEvent;
 
   edit_movie_validation_messages = {
     'name': [
@@ -43,7 +52,10 @@ export class EditMovieComponent implements OnInit {
       ]
   });
   genreFormGroup = this.fb.group({
-    selectedGenre: [this.data.movie.genres]
+    selectedGenre: [this.data.movie.genres],
+    rating: [
+      this.data.movie.rating
+    ]
   });
 
   constructor(
@@ -80,11 +92,13 @@ export class EditMovieComponent implements OnInit {
   }
 
    onSubmit() {
+     console.log(this.editMovie);
      this.auth.editMovie({
       "id" : this.editMovie.value.id,
       "name" : this.editMovie.value.name,
       "content": this.editMovie.value.content,
-      "genres": this.genreFormGroup.value.selectedGenre
+      "rating": this.genreFormGroup.value.rating,
+      "genres": this.genreFormGroup.value.selectedGenre,
         }).subscribe(
            data => this.handleResponse(data),
            error => console.log(error)
@@ -94,5 +108,21 @@ export class EditMovieComponent implements OnInit {
    handleResponse(data) {
     this.dialogRef.close(data);
    }
+
+   onClick = ($event: ClickEvent) => {
+    console.log($event);
+    this.genreFormGroup.value.rating = $event;
+    console.log(this.genreFormGroup.value.rating);
+  };
+
+  onRatingChange = ($event: RatingChangeEvent) => {
+    console.log($event);
+    this.genreFormGroup.value.rating = $event;
+  };
+
+  onHoverRatingChange = ($event: HoverRatingChangeEvent) => {
+    console.log($event);
+    this.genreFormGroup.value.rating = $event;
+  };
 
 }
