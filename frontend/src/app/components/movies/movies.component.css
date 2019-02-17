@@ -41,3 +41,12 @@ center-form {
 p {
     padding: 25px;
 }
+
+.rate-movie {
+    display: flex;
+    justify-content: center;
+}
+
+.ratings {
+    padding: 1em;
+}

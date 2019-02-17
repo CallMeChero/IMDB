@@ -50,8 +50,14 @@ img {
     object-fit: contain;
     margin:0;
 }
-mat-card-actions>button:first-of-type {
-    margin-right: 50px;
+
+mat-card-actions {
+    margin-top: 2em;
+    margin-bottom: 0;
+}
+
+.genres-box {
+    margin-top: 0.5em;
 }
 
 hr.style-seven {
@@ -85,6 +91,8 @@ hr.style-seven:before { /* Not really supposed to work, but does */
     padding-top:15px;
     padding-left: 15px;
 }
-p {
+p.mat-card-paragraph {
     font-family: "Book Antiqua ,Palatino,Palatino Linotype,Palatino LT ST, Georgia, serif";
+    margin-top: 30px;
+    margin-bottom: 30px;
 }

@@ -34,12 +34,16 @@
             formControlName="selectedGenre">
         </ng-select>
 
-        <star-rating-control 
+        <div class="rating-box">
+            <span>Rate:</span>
+            <star-rating-control 
+              class="star-equal"
               formControlName="rating"
               (starClickChange)="onClick($event)"
               (ratingChange)="onRatingChange($event)"
               >
-  </star-rating-control> 
+        </star-rating-control> 
+        </div>
     </form> 
   </div>
   <div class="form-button" style="display:flex;flex-wrap: wrap;justify-content: space-around;">

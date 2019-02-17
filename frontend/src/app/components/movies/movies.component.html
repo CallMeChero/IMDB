@@ -61,9 +61,11 @@
 
     <mat-step [stepControl]="contentFormGroup">
         <form [formGroup]="contentFormGroup">
-          <ng-template matStepLabel>Add content</ng-template>
-          <div>
-            <star-rating-control 
+          <ng-template matStepLabel>Add rate & content</ng-template>
+          <div class="rate-movie">
+            <h3>Rate movie:</h3>
+            <star-rating-control
+              class="ratings" 
               formControlName="movieRating"
               (starClickChange)="onClick($event)"
               (ratingChange)="onRatingChange($event)"

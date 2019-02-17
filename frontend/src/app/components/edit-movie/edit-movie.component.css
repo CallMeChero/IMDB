@@ -15,4 +15,15 @@
 .container {
   padding: 30px;
 }
+
+.rating-box {
+  margin-top:2em;
+  margin-bottom:2em;
+  display:flex;
+  justify-content: flex-start;
+}
+
+.star-equal {
+  margin-top: -2px;
+}
   

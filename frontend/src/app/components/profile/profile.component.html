@@ -21,7 +21,7 @@
       <mat-card-header>
           <!-- <div mat-card-avatar class="example-header-image"></div> -->
           <mat-card-title class="movie-name">{{ movie.name }}</mat-card-title>
-          <div>
+          <div class="genres-box">
             <mat-chip-list>
               <mat-chip color="primary" selected *ngFor="let genre of movie.genres">{{ genre.name }}</mat-chip>
             </mat-chip-list>
