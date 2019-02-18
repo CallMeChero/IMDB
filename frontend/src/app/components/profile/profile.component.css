@@ -96,3 +96,7 @@ p.mat-card-paragraph {
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
+.mat-tab-group-box {
+    background: rgba(255,255,255,0.46);
+}

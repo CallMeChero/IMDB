@@ -64,4 +64,9 @@ export class AuthService {
   deleteSerie(id: number) {
     return this.http.post(this.baseURL + '/delete_serie', id);
   }
+
+  searchUserMovies(value,username) {
+    const  params = new  HttpParams().set('username', username).set('value',value);
+    return this.http.get(this.baseURL + '/search_movie', {params});
+  }
 }

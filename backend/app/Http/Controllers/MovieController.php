@@ -84,4 +84,16 @@ class MovieController extends Controller
         
         return $movie;
     }
+    
+    public function searchUserMovies(Request $request) {
+
+        $query = Movie::query();
+        $movies = $query->with('user')
+                ->with('genres')
+                ->where('name','like', '%'.request()->value.'%')
+                //orWhere('rating',request()->rating) ->todo
+                ->orderBy('name')
+                ->get();
+        return $movies;
+    }
 }

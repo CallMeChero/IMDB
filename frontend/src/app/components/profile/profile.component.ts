@@ -8,11 +8,12 @@ import { EditMovieComponent } from '../edit-movie/edit-movie.component';
 import { SeriesComponent } from '../series/series.component';
 import { EditSerieComponent } from '../edit-serie/edit-serie.component';
 import { DeleteSerieComponent } from '../delete-serie/delete-serie.component';
+import {HttpParams} from  "@angular/common/http";
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
 
@@ -59,6 +60,24 @@ export class ProfileComponent implements OnInit {
     if(data.length > 0) {
       this.areMoviesFilled = true;
     }
+  }
+
+  /*  search */
+
+  public doFilter (value: string):void{
+    if(value) {
+      this.auth.searchUserMovies(value,this.username)
+        .subscribe(
+        data => this.handleMovieFilter(data),
+        error => console.log(error)
+      )
+    } else {
+      this.getUserMovies()
+    }
+  }
+
+  handleMovieFilter(data){
+    this.movies = data;
   }
 
   deleteMovieDialog(movie): void {

@@ -1,5 +1,5 @@
 <mat-tab-group class="mat-tab-group-box">
-<mat-tab label="Movies" style="background: white">
+<mat-tab label="Movies">
   <div class="profile">
     <mat-card style="margin:15px 15%;">
       <mat-card-header>
@@ -13,6 +13,10 @@
         <button mat-raised-button class="mat-primary pull-button" (click)="addMovie()">ADD</button>
       </mat-card-content>
     </mat-card>
+
+  <mat-form-field fxFlex="40%" style="margin: 0 15%;">
+      <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter by movie name">
+  </mat-form-field>
 
   <div *ngIf="areMoviesFilled">
     <mat-card class="movie-card" *ngFor="let movie of movies">

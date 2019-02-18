@@ -41,7 +41,7 @@ export class EditMovieComponent implements OnInit {
           this.data.movie.name,
           Validators.compose([
             Validators.required,
-            Validators.pattern('[A-Za-z0-9]{3,20}')
+            Validators.pattern('([a-zA-Z]\s|.){3,25}')
           ])
         ],
       content: [
