@@ -56,4 +56,8 @@ export class AuthService {
   sumbmitSerie(data) {
     return this.http.post(this.baseURL + '/series',data);
   }
+
+  editSerie(data) {
+    return this.http.put(this.baseURL + '/edit_serie', data);
+  }
 }

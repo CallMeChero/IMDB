@@ -1,0 +1,56 @@
+<div class="form">
+    <mat-card class="editSerie">
+    <form class="edit-form" [formGroup]="editSerie">
+      <span>Edit movie</span>
+      <hr>
+      <mat-form-field class="expand-field">
+        <input matInput type="text" placeholder="name" formControlName="name" required>
+        <mat-error *ngIf="editSerie.hasError('required')">
+            This field is required
+        </mat-error>
+        <mat-error *ngFor="let validation of edit_serie_validation_messages.name">
+            <mat-error class="error-message" *ngIf="editSerie.get('name').hasError(validation.type) && (editSerie.get('name').dirty || editSerie.get('name').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+      </mat-form-field>
+    
+      <mat-form-field class="expand-field">
+          <textarea matInput type="text" placeholder="content" formControlName="content" id="content" name="content" required>
+          </textarea>
+          <mat-error *ngIf="editSerie.hasError('required')">
+              This field is required
+          </mat-error>
+          <mat-error *ngFor="let validation of edit_serie_validation_messages.content">
+              <mat-error class="error-message" *ngIf="editSerie.get('content').hasError(validation.type) && (editSerie.get('content').dirty || editSerie.get('content').touched)">{{validation.message}}</mat-error>
+          </mat-error>
+      </mat-form-field>          
+      <div class="container">
+        <form [formGroup]="genreFormGroup">
+            <ng-template matStepLabel>Add genre(s)</ng-template>
+            <ng-select 
+                [items]="genres"
+                bindLabel="name"
+                [multiple]="true"
+                placeholder="Select movie genre(s)"
+                formControlName="selectedGenre">
+            </ng-select>
+    
+            <div class="rating-box">
+                <span>Rate:</span>
+                <star-rating-control 
+                  class="star-equal"
+                  formControlName="rating"
+                  (starClickChange)="onClick($event)"
+                  (ratingChange)="onRatingChange($event)"
+                  >
+            </star-rating-control> 
+            </div>
+        </form> 
+      </div>
+      <div class="form-button" style="display:flex;flex-wrap: wrap;justify-content: space-around;">
+          <a mat-raised-button color="primary" (click)="onSubmit()">Edit movie</a>
+          <a mat-raised-button color="primary" (click)="onNoClick()">No, thanks!</a>
+      </div>
+    </form>
+    </mat-card>
+</div>
+    

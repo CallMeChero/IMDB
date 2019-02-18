@@ -25,4 +25,5 @@ Route::group([
     //series 
     Route::get('series/{username}', 'SerieController@showUserSeries');
     Route::post('series', 'SerieController@addUserSerie');
+    Route::put('edit_serie', 'SerieController@editUserSerie');
 });

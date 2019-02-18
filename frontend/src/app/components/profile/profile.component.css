@@ -8,13 +8,12 @@
 
 .movie-header {
     flex: 20%;
-    width: 400px;
+    width: 2em;
     background-color: #808080;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
-    -webkit-filter: grayscale(75%); /* Safari 6.0 - 9.0 */
-    filter: grayscale(75%);
-    height: 100%;
+    -webkit-filter: grayscale(50%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(50%);
 }
 
 mat-card-header {
@@ -47,7 +46,7 @@ mat-card-title {
 img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: fill;
     margin:0;
 }
 

@@ -6,6 +6,7 @@ import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { DeleteMovieComponent } from '../delete-movie/delete-movie.component';
 import { EditMovieComponent } from '../edit-movie/edit-movie.component';
 import { SeriesComponent } from '../series/series.component';
+import { EditSerieComponent } from '../edit-serie/edit-serie.component';
 
 @Component({
   selector: 'app-profile',
@@ -122,7 +123,6 @@ export class ProfileComponent implements OnInit {
 
   handleSeriesResponse(data) {
     this.series = data;
-    console.log(this.series);
     for (let [key, value] of Object.entries(this.series)) {
       if(!this.series[key].image) {
         console.log(this.series[key]);
@@ -141,7 +141,20 @@ export class ProfileComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getUserMovies();
+      this.getUserSeries();
+    });
+  }
+
+  editSerieDialog(serie): void {
+    const dialogRef = this.dialog.open(EditSerieComponent, {
+      width: '750px',
+      height: '650px',
+      data: {serie: serie}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.getUserSeries();
     });
   }
 

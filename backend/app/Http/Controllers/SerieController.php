@@ -58,29 +58,29 @@ class SerieController extends Controller
         return response()->json([
             'data' => 'Movie has been successfully deleted!'
         ]);
-    }
+    } */
 
-    public function editUserMovie(Request $request) {
-        $movie = Movie::find(request()->id);
+    public function editUserSerie(Request $request) {
+        $serie = Serie::find(request()->id);
         $rating = (int) request()->rating['rating'];
-        $movie->update([
+        $serie->update([
                     'name' => request()->name,
                     'content' => request()->content,
                     'genres' => request()->genres,
                     'rating' => $rating
                     ]);
-        $movie->save();
+        $serie->save();
 
         if(request()->genres) {
             foreach(request()->genres as $i => $genre) {
-                $movie_genres[] = $genre['id'];
+                $serie_genre[] = $genre['id'];
             }
-            $genres = Genre::find($movie_genres);
-            $movie->genres()->sync($genres);
-        } else if ($movie->genres()){
-            $movie->genres()->detach();
+            $genres = Genre::find($serie_genre);
+            $serie->genres()->sync($genres);
+        } else if ($serie->genres()){
+            $serie->genres()->detach();
         }
         
-        return $movie;
-    }*/
+        return $serie;
+    }
 }
