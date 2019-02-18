@@ -1,45 +1,101 @@
-<mat-card style="margin:15px 15%;">
-    <mat-card-header>
-        <!-- <div mat-card-avatar class="example-header-image"></div> -->
-        <mat-card-title *ngIf="!areMoviesFilled">Sorry, we couldn't find your movie list.</mat-card-title>
-        <mat-card-title *ngIf="areMoviesFilled">Add a new movie to your list.</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p class="mat-card-paragraph" *ngIf="!areMoviesFilled">Let's start by adding one. Click bellow!</p>
-      <p class="mat-card-paragraph" *ngIf="areMoviesFilled">Click bellow to add new one!</p>
-      <button mat-raised-button class="mat-primary pull-button" (click)="addMovie()">ADD</button>
-    </mat-card-content>
-</mat-card>
-
-<div *ngIf="areMoviesFilled">
-  <mat-card class="movie-card" *ngFor="let movie of movies">
-    <div class="movie-header">
-      <img src="assets/img/{{ movie.image.filename }}">
-    </div>
-  <div class="movie-content">
-    <mat-card-content>
+<mat-tab-group>
+<mat-tab label="Movies">
+  <div class="profile">
+    <mat-card style="margin:15px 15%;">
       <mat-card-header>
           <!-- <div mat-card-avatar class="example-header-image"></div> -->
-          <mat-card-title class="movie-name">{{ movie.name }}</mat-card-title>
-          <div class="genres-box">
-            <mat-chip-list>
-              <mat-chip color="primary" selected *ngFor="let genre of movie.genres">{{ genre.name }}</mat-chip>
-            </mat-chip-list>
-          </div>
+          <mat-card-title *ngIf="!areMoviesFilled">Sorry, we couldn't find your movie list.</mat-card-title>
+          <mat-card-title *ngIf="areMoviesFilled">Add a new movie to your list.</mat-card-title>
       </mat-card-header>
-      <hr class="style-seven">
-      <div class="rating-box">
-        <h3>Rating:</h3>
-        <star-rating *ngIf="movie.rating" class="star-rating" [rating]="movie.rating"></star-rating>
+      <mat-card-content>
+        <p class="mat-card-paragraph" *ngIf="!areMoviesFilled">Let's start by adding one. Click bellow!</p>
+        <p class="mat-card-paragraph" *ngIf="areMoviesFilled">Click bellow to add new one!</p>
+        <button mat-raised-button class="mat-primary pull-button" (click)="addMovie()">ADD</button>
+      </mat-card-content>
+    </mat-card>
+
+  <div *ngIf="areMoviesFilled">
+    <mat-card class="movie-card" *ngFor="let movie of movies">
+      <div class="movie-header">
+        <img src="assets/img/{{ movie.image.filename }}">
       </div>
-      <p class="mat-card-paragraph">
-        {{ movie.content }}
-      </p>
-    </mat-card-content>
-    <mat-card-actions class="button-box">
-        <button mat-raised-button class="mat-accent" (click)="editMovieDialog(movie)">EDIT</button>
-        <button mat-raised-button class="mat-warn" (click)="deleteMovieDialog(movie)">DELETE</button>
-    </mat-card-actions>
+    <div class="movie-content">
+      <mat-card-content>
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div> 
+            <mat-card-title class="movie-name">{{ movie.name }}</mat-card-title>
+            <div class="genres-box">
+              <mat-chip-list>
+                <mat-chip color="primary" selected *ngFor="let genre of movie.genres">{{ genre.name }}</mat-chip>
+              </mat-chip-list>
+            </div>
+        </mat-card-header>
+        <hr class="style-seven">
+        <div class="rating-box">
+          <h3>Rating:</h3>
+          <star-rating *ngIf="movie.rating" class="star-rating" [rating]="movie.rating"></star-rating>
+        </div>
+        <p class="mat-card-paragraph">
+          {{ movie.content }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions class="button-box">
+          <button mat-raised-button class="mat-accent" (click)="editMovieDialog(movie)">EDIT</button>
+          <button mat-raised-button class="mat-warn" (click)="deleteMovieDialog(movie)">DELETE</button>
+      </mat-card-actions>
+    </div>
+    </mat-card>
+    </div>
   </div>
-  </mat-card>
-</div>
+  </mat-tab>
+  <mat-tab label="Series">
+    <div class="profile">
+        <mat-card style="margin:15px 15%;">
+          <mat-card-header>
+              <!-- <div mat-card-avatar class="example-header-image"></div> -->
+              <mat-card-title *ngIf="!areSeriesFilled">Sorry, we couldn't find your list of series.</mat-card-title>
+              <mat-card-title *ngIf="areSeriesFilled">Add new to your list.</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p class="mat-card-paragraph" *ngIf="!areSeriesFilled">Let's start by adding one. Click bellow!</p>
+            <p class="mat-card-paragraph" *ngIf="areSeriesFilled">Click bellow to add new one!</p>
+            <button mat-raised-button class="mat-primary pull-button" (click)="addSerie()">ADD</button>
+          </mat-card-content>
+        </mat-card>
+    
+      <div *ngIf="areSeriesFilled">
+        <mat-card class="movie-card" *ngFor="let serie of series">
+          <div class="movie-header">
+            <img src="assets/img/{{ serie.image.filename }}">
+          </div>
+        <div class="movie-content">
+          <mat-card-content>
+            <mat-card-header>
+                <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                <mat-card-title class="movie-name">{{ serie.name }}</mat-card-title>
+                <div class="genres-box">
+                  <mat-chip-list>
+                    <mat-chip color="primary" selected *ngFor="let genre of serie.genres">{{ genre.name }}</mat-chip>
+                  </mat-chip-list>
+                </div>
+            </mat-card-header>
+            <hr class="style-seven">
+            <div class="rating-box">
+              <h3>Rating:</h3>
+              <star-rating *ngIf="serie.rating" class="star-rating" [rating]="serie.rating"></star-rating>
+            </div>
+            <p class="mat-card-paragraph">
+              {{ serie.content }}
+            </p>
+          </mat-card-content>
+          <mat-card-actions class="button-box">
+              <button mat-raised-button class="mat-accent" (click)="editMovieDialog(movie)">EDIT</button>
+              <button mat-raised-button class="mat-warn" (click)="deleteMovieDialog(movie)">DELETE</button>
+          </mat-card-actions>
+        </div>
+        </mat-card>
+        </div>
+      </div>
+  </mat-tab>
+</mat-tab-group>
+

@@ -48,4 +48,12 @@ export class AuthService {
   getGenres() {
     return this.http.get(this.baseURL + '/genres');
   }
+
+  getUserSeries(data) {
+    return this.http.get(this.baseURL + '/series/'+ data);
+  }
+
+  sumbmitSerie(data) {
+    return this.http.post(this.baseURL + '/series',data);
+  }
 }

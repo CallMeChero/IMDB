@@ -8,11 +8,16 @@ use App\Movie;
 class Image extends Model
 {
     protected $fillable = [
-        'movie_id','filename','path'
+        'serie_id','movie_id','filename','path'
     ];
 
     public function movie()
     {
         return $this->belongsTo(Movie::class);
+    }
+
+    public function serie()
+    {
+        return $this->belongsTo(Serie::class);
     }
 }

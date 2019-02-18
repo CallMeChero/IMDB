@@ -1,0 +1,100 @@
+<mat-horizontal-stepper linear #stepper>
+    <mat-step>
+        <ng-template matStepLabel>Welcome</ng-template>
+        <div class="center-form">
+          <p>
+            Glad to have you here, we hope you dont mind take a quick survey.
+          </p>
+            <button mat-stroked-button color="primary" matStepperNext>Next</button>
+        </div>
+    </mat-step>
+
+    <mat-step [stepControl]="nameFormGroup">
+      <form [formGroup]="nameFormGroup">
+        <ng-template matStepLabel>Add name</ng-template>
+        <div class="center-form">
+          <mat-form-field class="expand">
+            <input matInput placeholder="name" formControlName="name" id="name" name="name" required>
+          </mat-form-field>
+          <div class="button-space-between">
+            <button mat-stroked-button color="accent" matStepperPrevious>Back</button>
+            <button mat-stroked-button color="primary" matStepperNext>Next</button>
+          </div>
+      </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="genreFormGroup">
+        <form [formGroup]="genreFormGroup">
+          <ng-template matStepLabel>Add genre(s)</ng-template>
+          <div class="center-form-ng-select" [class.biggerHeight]="isOpened">
+              <ng-select 
+                  [items]="genres"
+                  bindLabel="name"
+                  bindValue="id"
+                  (open)="OpenDiv()"
+                  (close) ="CloseDiv()"
+                  [multiple]="true"
+                  placeholder="Select movie genre(s)"
+                  formControlName="selectedGenre">
+              </ng-select>
+            <div class="button-space-between">
+              <button mat-stroked-button color="accent" matStepperPrevious>Back</button>
+              <button mat-stroked-button color="primary" matStepperNext>Next</button>
+            </div>
+          </div>
+        </form>
+    </mat-step>
+
+    <mat-step >
+      <form enctype="multipart/form-data">
+        <ng-template matStepLabel>Upload picture</ng-template>
+        <div class="center-form">
+            <input name="imageSrc" type="file" accept="image/*" (change)="handleInputChange($event)" />
+          <div class="button-space-between">
+            <button mat-stroked-button color="accent" matStepperPrevious>Back</button>
+            <button mat-stroked-button color="primary" matStepperNext>Next</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="contentFormGroup">
+        <form [formGroup]="contentFormGroup">
+          <ng-template matStepLabel>Add rate & content</ng-template>
+          <div class="rate-movie">
+            <h3>Rate movie:</h3>
+            <star-rating-control
+              class="ratings" 
+              formControlName="serieRating"
+              (starClickChange)="onClick($event)"
+              (ratingChange)="onRatingChange($event)"
+              [hoverEnabled]="true" 
+              (hoverRatingChange)="onHoverRatingChange($event)"
+              >
+            </star-rating-control>
+          </div>
+          <div class="center-form">
+            <mat-form-field class="expand2">
+              <textarea matInput placeholder="Type us your review about movie here" formControlName="content" required></textarea>
+            </mat-form-field>
+            <div class="button-space-between">
+              <button mat-stroked-button color="accent" matStepperPrevious>Back</button>
+              <button mat-stroked-button color="primary" matStepperNext>Next</button>
+            </div>
+          </div>
+        </form>
+      </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <div class="center-form">
+        <p>
+          You are now done, click submit for adding it to your amazing list!
+        </p>
+        <div class="button-space-between">
+          <button mat-stroked-button color="accent" matStepperPrevious>Back</button>
+          <button mat-stroked-button color="primary" (click)="onSubmit()">Submit</button>
+        </div>
+      </div>
+    </mat-step>
+</mat-horizontal-stepper>

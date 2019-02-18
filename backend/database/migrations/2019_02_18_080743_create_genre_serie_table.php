@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImagesTable extends Migration
+class CreateGenreSerieTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('genre_serie', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('filename')->nullable();
-            $table->string('path')->nullable();
-            $table->integer('movie_id')->unsigned()->nullable();
-            $table->foreign('movie_id')->references('id')->on('movies')
+            $table->integer('genre_id')->unsigned();
+            $table->integer('serie_id')->unsigned();
+            $table->foreign('genre_id')->references('id')->on('genres')
                 ->onDelete('cascade');
-            $table->integer('serie_id')->unsigned()->nullable();
             $table->foreign('serie_id')->references('id')->on('series')
                 ->onDelete('cascade');
-            $table->timestamps();    
         });
     }
 
@@ -34,5 +31,6 @@ class CreateImagesTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('genre_serie');
     }
 }

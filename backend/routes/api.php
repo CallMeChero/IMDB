@@ -21,4 +21,8 @@ Route::group([
     Route::post('movies', 'MovieController@addUserMovie');
     Route::post('delete_movie', 'MovieController@deleteUserMovie');
     Route::put('edit_movie', 'MovieController@editUserMovie');
+
+    //series 
+    Route::get('series/{username}', 'SerieController@showUserSeries');
+    Route::post('series', 'SerieController@addUserSerie');
 });

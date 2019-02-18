@@ -1,8 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenService } from 'src/app/services/token.service';
+import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import {
   ClickEvent,
   HoverRatingChangeEvent,
@@ -10,19 +10,17 @@ import {
 } from 'angular-star-rating';
 
 @Component({
-  selector: 'app-movies',
-  templateUrl: './movies.component.html',
-  styleUrls: ['./movies.component.css']
+  selector: 'app-series',
+  templateUrl: './series.component.html',
+  styleUrls: ['./series.component.css']
 })
-export class MoviesComponent implements OnInit {
+export class SeriesComponent implements OnInit {
 
-  nameFormGroup;
-  contentFormGroup;
-  genreFormGroup;
-  tokenData;
+  public nameFormGroup;
+  public contentFormGroup;
+  public genreFormGroup;
+  public tokenData;
   public genres;
-  public error;
-  public err;
   public file;
   private imageSrc: string = '';
   actionButtonLabel: string = 'Retry';
@@ -37,14 +35,11 @@ export class MoviesComponent implements OnInit {
     private fb: FormBuilder,
     private auth: AuthService,
     private token: TokenService,
-    public dialogRef: MatDialogRef<MoviesComponent>,
-    @Inject(MAT_DIALOG_DATA) public data) {}
+    public dialogRef: MatDialogRef<SeriesComponent>,
+    @Inject(MAT_DIALOG_DATA) public data
+  ) { }
 
-    onNoClick(): void {
-      this.dialogRef.close();
-    }
-
-   ngOnInit() {
+  ngOnInit() {
     this.nameFormGroup = this.fb.group({
       name: [
         '', 
@@ -58,7 +53,7 @@ export class MoviesComponent implements OnInit {
         '', 
         Validators.required
       ],
-      movieRating: [
+      serieRating: [
         3,
         Validators.required
       ]
@@ -68,7 +63,7 @@ export class MoviesComponent implements OnInit {
       ]
     });
     this.getGenres();
-   } 
+  }
 
   getGenres() {
     this.auth.getGenres()
@@ -102,50 +97,50 @@ export class MoviesComponent implements OnInit {
     reader.onload = this._handleReaderLoaded.bind(this);
     reader.readAsDataURL(file);
   }
+
   _handleReaderLoaded(e) {
     let reader = e.target;
     this.imageSrc = reader.result;
   }
 
-   onSubmit() {
-    this.nameFormGroup.value.content = this.contentFormGroup.value.content;
-     this.auth.sumbmitMovie({
+  onSubmit() {
+     this.auth.sumbmitSerie({
       "name" : this.nameFormGroup.value.name,
       "content": this.contentFormGroup.value.content,
       "username": this.getLoggedUser(),
       "genres": this.genreFormGroup.value.selectedGenre,
       "base64": this.imageSrc,
-      "rating": this.contentFormGroup.value.movieRating
+      "rating": this.contentFormGroup.value.serieRating
         }).subscribe(
-           data => this.handleResponse(data),
+           data => this.handleResponse(),
            error => console.log(error)
        );
    }
 
-   handleResponse(data) {
-    console.log(data);
+  handleResponse() {
     this.dialogRef.close();
-   }
+  }
 
-   OpenDiv() {
+  OpenDiv() {
      this.isOpened = true;
-   }
+  }
 
-   CloseDiv() {
+  CloseDiv() {
      this.isOpened = false;
-   }
+  }
 
-   onClick = ($event: ClickEvent) => {
-    this.contentFormGroup.value.movieRating = $event;
-
+  onClick = ($event: ClickEvent) => {
+    this.contentFormGroup.value.serieRating = $event;
+    console.log(this.contentFormGroup.value.serieRating);
   };
 
   onRatingChange = ($event: RatingChangeEvent) => {
-    this.contentFormGroup.value.movieRating = $event;
+    this.contentFormGroup.value.serieRating = $event;
+    console.log(this.contentFormGroup.value.serieRating);
   };
 
   onHoverRatingChange = ($event: HoverRatingChangeEvent) => {
-    this.contentFormGroup.value.movieRating = $event;
+    this.contentFormGroup.value.serieRating = $event;
+    console.log(this.contentFormGroup.value.serieRating);
   };
-
 }

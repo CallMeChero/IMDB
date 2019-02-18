@@ -1,0 +1,52 @@
+.mat-dialog-buttons {
+    margin-top: 25px;
+    display:flex;
+    justify-content: space-between
+}
+
+.form-content {
+    margin: 25px;
+    text-align: center;
+}
+
+.button-space-between {
+    margin-top: 1.5%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: -20px;
+}
+
+.center-form {
+    text-align: center;
+}
+
+.expand {
+    margin-top:15px;
+    min-width: 250px;
+}
+
+center-form {
+    padding: 15px;
+}
+.expand2 {
+    margin-top:15px;
+    min-width: 550px;
+}
+
+.biggerHeight {
+    min-height: 300px;
+}
+p {
+    padding: 25px;
+}
+
+.rate-movie {
+    display: flex;
+    justify-content: center;
+}
+
+.ratings {
+    padding: 1em;
+}

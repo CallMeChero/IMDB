@@ -33,6 +33,7 @@ import { MoviesComponent } from './components/movies/movies.component';
 import { DeleteMovieComponent } from './components/delete-movie/delete-movie.component';
 import { EditMovieComponent } from './components/edit-movie/edit-movie.component';
 import { StarRatingModule } from 'angular-star-rating';
+import { SeriesComponent } from './components/series/series.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { StarRatingModule } from 'angular-star-rating';
     ResponseResetComponent,
     MoviesComponent,
     DeleteMovieComponent,
-    EditMovieComponent
+    EditMovieComponent,
+    SeriesComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +79,8 @@ import { StarRatingModule } from 'angular-star-rating';
   entryComponents: [
     MoviesComponent,
     DeleteMovieComponent,
-    EditMovieComponent
+    EditMovieComponent,
+    SeriesComponent
   ],
   bootstrap: [AppComponent]
 })

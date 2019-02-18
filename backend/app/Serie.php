@@ -7,7 +7,7 @@ use App\User;
 use App\Genre;
 use App\Image;
 
-class Movie extends Model
+class Serie extends Model
 {
     protected $fillable = [
         'name', 'user_id', 'content', 'rating'
@@ -24,7 +24,7 @@ class Movie extends Model
 
     public function genres()
     {
-        return $this->belongsToMany(Genre::class);
+        return $this->belongsToMany(Genre::class, 'genre_serie');
     }
 
     public function image()

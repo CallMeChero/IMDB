@@ -65,6 +65,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Movie::class);
     }
 
+    public function series() {
+        return $this->hasMany(Serie::class);
+    }
+
     public function setPasswordAttribute($value) {
         return $this->attributes['password'] = bcrypt($value);
     }
