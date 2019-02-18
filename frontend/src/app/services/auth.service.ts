@@ -60,4 +60,8 @@ export class AuthService {
   editSerie(data) {
     return this.http.put(this.baseURL + '/edit_serie', data);
   }
+
+  deleteSerie(id: number) {
+    return this.http.post(this.baseURL + '/delete_serie', id);
+  }
 }

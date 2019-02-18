@@ -7,6 +7,7 @@ import { DeleteMovieComponent } from '../delete-movie/delete-movie.component';
 import { EditMovieComponent } from '../edit-movie/edit-movie.component';
 import { SeriesComponent } from '../series/series.component';
 import { EditSerieComponent } from '../edit-serie/edit-serie.component';
+import { DeleteSerieComponent } from '../delete-serie/delete-serie.component';
 
 @Component({
   selector: 'app-profile',
@@ -46,14 +47,6 @@ export class ProfileComponent implements OnInit {
         error => this.error = error
       )
   }
-
-  deleteMovie(movie): void {
-     this.auth.deleteMovie(movie)
-       .subscribe( message=> {
-         this.openSnackBar(message)
-         this.movies = this.movies.filter(m => m !== movie)
-        })
-  };
   
   handleResponse(data) {
     this.movies = data;
@@ -84,6 +77,14 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  deleteMovie(movie): void {
+    this.auth.deleteMovie(movie)
+      .subscribe( message=> {
+        this.openSnackBar(message)
+        this.movies = this.movies.filter(m => m !== movie)
+       })
+  };
+
   editMovieDialog(movie): void {
     const dialogRef = this.dialog.open(EditMovieComponent, {
       width: '750px',
@@ -112,7 +113,8 @@ export class ProfileComponent implements OnInit {
     this.snackBar.open(data.data,this.action ? this.actionButtonLabel : undefined);
   }
 
-  //series
+  /* SERIES */
+
   getUserSeries() {
     this.auth.getUserSeries(this.username)
       .subscribe(
@@ -157,5 +159,29 @@ export class ProfileComponent implements OnInit {
       this.getUserSeries();
     });
   }
+
+  deleteSerieDialog(serie): void {
+    const dialogRef = this.dialog.open(DeleteSerieComponent, {
+      width: '400',
+      data: {serie: serie}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result == true) {
+        this.deleteSerie(serie);
+        if(this.series.length == 0) {
+          this.areSeriesFilled = false;
+        }
+      }
+    });
+  }
+
+  deleteSerie(serie): void {
+    this.auth.deleteSerie(serie)
+      .subscribe( message=> {
+        this.openSnackBar(message)
+        this.series = this.series.filter(m => m !== serie)
+       })
+  };
 
 }

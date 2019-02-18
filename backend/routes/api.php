@@ -26,4 +26,5 @@ Route::group([
     Route::get('series/{username}', 'SerieController@showUserSeries');
     Route::post('series', 'SerieController@addUserSerie');
     Route::put('edit_serie', 'SerieController@editUserSerie');
+    Route::post('delete_serie', 'SerieController@deleteUserSerie');
 });

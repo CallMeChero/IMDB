@@ -135,9 +135,8 @@ export class MoviesComponent implements OnInit {
      this.isOpened = false;
    }
 
-   onClick = ($event: ClickEvent) => {
+  onClick = ($event: ClickEvent) => {
     this.contentFormGroup.value.movieRating = $event;
-
   };
 
   onRatingChange = ($event: RatingChangeEvent) => {
@@ -145,7 +144,6 @@ export class MoviesComponent implements OnInit {
   };
 
   onHoverRatingChange = ($event: HoverRatingChangeEvent) => {
-    this.contentFormGroup.value.movieRating = $event;
   };
 
 }

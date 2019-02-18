@@ -52,14 +52,6 @@ class SerieController extends Controller
         return $serie;
     }
 
-    /*public function deleteUserMovie(Request $request) {
-        $movie = Movie::find(request()->id)->delete();
-
-        return response()->json([
-            'data' => 'Movie has been successfully deleted!'
-        ]);
-    } */
-
     public function editUserSerie(Request $request) {
         $serie = Serie::find(request()->id);
         $rating = (int) request()->rating['rating'];
@@ -82,5 +74,14 @@ class SerieController extends Controller
         }
         
         return $serie;
+    }
+
+    public function deleteUserSerie() {
+        $serie = Serie::find(request()->id)->delete();
+        if($serie) {
+            return response()->json([
+                'data' => 'Movie has been successfully deleted!'
+            ]);
+        }
     }
 }

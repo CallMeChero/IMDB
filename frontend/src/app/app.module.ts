@@ -35,6 +35,7 @@ import { EditMovieComponent } from './components/edit-movie/edit-movie.component
 import { StarRatingModule } from 'angular-star-rating';
 import { SeriesComponent } from './components/series/series.component';
 import { EditSerieComponent } from './components/edit-serie/edit-serie.component';
+import { DeleteSerieComponent } from './components/delete-serie/delete-serie.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { EditSerieComponent } from './components/edit-serie/edit-serie.component
     DeleteMovieComponent,
     EditMovieComponent,
     SeriesComponent,
-    EditSerieComponent
+    EditSerieComponent,
+    DeleteSerieComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +85,8 @@ import { EditSerieComponent } from './components/edit-serie/edit-serie.component
     DeleteMovieComponent,
     EditMovieComponent,
     SeriesComponent,
-    EditSerieComponent
+    EditSerieComponent,
+    DeleteSerieComponent
   ],
   bootstrap: [AppComponent]
 })

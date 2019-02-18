@@ -1,5 +1,5 @@
-<mat-tab-group>
-<mat-tab label="Movies">
+<mat-tab-group class="mat-tab-group-box">
+<mat-tab label="Movies" style="background: white">
   <div class="profile">
     <mat-card style="margin:15px 15%;">
       <mat-card-header>
@@ -90,7 +90,7 @@
           </mat-card-content>
           <mat-card-actions class="button-box">
               <button mat-raised-button class="mat-accent" (click)="editSerieDialog(serie)">EDIT</button>
-              <button mat-raised-button class="mat-warn" (click)="deleteMovieDialog(serie)">DELETE</button>
+              <button mat-raised-button class="mat-warn" (click)="deleteSerieDialog(serie)">DELETE</button>
           </mat-card-actions>
         </div>
         </mat-card>
