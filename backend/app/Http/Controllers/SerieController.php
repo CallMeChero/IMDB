@@ -54,7 +54,12 @@ class SerieController extends Controller
 
     public function editUserSerie(Request $request) {
         $serie = Serie::find(request()->id);
-        $rating = (int) request()->rating['rating'];
+        if((request()->rating != $serie->rating) && request()->rating != 0)
+        {
+            $rating = (int) request()->rating['rating'];
+        } else {
+            $rating = $serie->rating;
+        }
         $serie->update([
                     'name' => request()->name,
                     'content' => request()->content,
@@ -83,5 +88,17 @@ class SerieController extends Controller
                 'data' => 'Movie has been successfully deleted!'
             ]);
         }
+    }
+
+    public function searchUserSerie(Request $request) {
+
+        $query = Serie::query();
+        $series = $query->with('user')
+                ->with('genres')
+                ->where('name','like', '%'.request()->value.'%')
+                //orWhere('rating',request()->rating) ->todo
+                ->orderBy('name')
+                ->get();
+        return $series;
     }
 }

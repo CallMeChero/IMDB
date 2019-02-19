@@ -140,7 +140,5 @@ export class SeriesComponent implements OnInit {
   };
 
   onHoverRatingChange = ($event: HoverRatingChangeEvent) => {
-    this.contentFormGroup.value.serieRating = $event;
-    console.log(this.contentFormGroup.value.serieRating);
   };
 }

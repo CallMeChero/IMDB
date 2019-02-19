@@ -64,7 +64,7 @@ export class ProfileComponent implements OnInit {
 
   /*  search */
 
-  public doFilter (value: string):void{
+  public movieFilter (value: string):void{
     if(value) {
       this.auth.searchUserMovies(value,this.username)
         .subscribe(
@@ -78,6 +78,22 @@ export class ProfileComponent implements OnInit {
 
   handleMovieFilter(data){
     this.movies = data;
+  }
+
+  public serieFilter (value: string):void{
+    if(value !== '') {
+      this.auth.searchSerieFilter(value,this.username)
+        .subscribe(
+        data => this.handleSeriesFilter(data),
+        error => console.log(error)
+      )
+    } else {
+      this.getUserMovies()
+    }
+  }
+
+  handleSeriesFilter(data){
+    this.series = data;
   }
 
   deleteMovieDialog(movie): void {
@@ -191,6 +207,7 @@ export class ProfileComponent implements OnInit {
         if(this.series.length == 0) {
           this.areSeriesFilled = false;
         }
+        this.getUserSeries();
       }
     });
   }

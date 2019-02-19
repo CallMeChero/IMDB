@@ -21,11 +21,12 @@ Route::group([
     Route::post('movies', 'MovieController@addUserMovie');
     Route::post('delete_movie', 'MovieController@deleteUserMovie');
     Route::put('edit_movie', 'MovieController@editUserMovie');
-    Route::get('search_movie', 'MovieController@searchUserMovies');  //krivi nacin al ...
+    Route::get('search_movie', 'MovieController@searchUserMovies'); 
 
     //series 
     Route::get('series/{username}', 'SerieController@showUserSeries');
     Route::post('series', 'SerieController@addUserSerie');
     Route::put('edit_serie', 'SerieController@editUserSerie');
     Route::post('delete_serie', 'SerieController@deleteUserSerie');
+    Route::get('search_serie', 'SerieController@searchUserSerie'); 
 });

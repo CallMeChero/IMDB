@@ -100,3 +100,9 @@ p.mat-card-paragraph {
 .mat-tab-group-box {
     background: rgba(255,255,255,0.46);
 }
+
+.mat-input-underline {
+    text-shadow: 1.5px 1.5px #3399ff;
+    color: #000000;
+
+}
