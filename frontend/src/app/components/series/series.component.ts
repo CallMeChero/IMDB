@@ -22,6 +22,7 @@ export class SeriesComponent implements OnInit {
   public tokenData;
   public genres;
   public file;
+  public actors;
   private imageSrc: string = '';
   actionButtonLabel: string = 'Retry';
   action: boolean = true;
@@ -46,6 +47,12 @@ export class SeriesComponent implements OnInit {
         Validators.compose([
           Validators.required,
           Validators.pattern('([a-zA-Z]\s|.){3,25}')
+      ])],
+      year: [
+        '', 
+        Validators.compose([
+          Validators.required,
+          Validators.pattern('\\d{4}')
       ])]
     });
     this.contentFormGroup = this.fb.group({
@@ -60,9 +67,12 @@ export class SeriesComponent implements OnInit {
     });
     this.genreFormGroup = this.fb.group({
       selectedGenre: [
+      ],
+      selectedActor: [
       ]
     });
     this.getGenres();
+    this.getActors();
   }
 
   getGenres() {
@@ -75,6 +85,19 @@ export class SeriesComponent implements OnInit {
 
   handleGenreResponse(data) {
     this.genres = data;
+  }
+
+  /* actors */
+  getActors() {
+    this.auth.getActors()
+    .subscribe(
+      data => this.handleActorsResponse(data),
+      error => console.log(error)
+    );
+  }
+
+  handleActorsResponse(data) {
+    this.actors = data;
   }
 
   onPictureUpload(picture) {
@@ -110,15 +133,17 @@ export class SeriesComponent implements OnInit {
       "username": this.getLoggedUser(),
       "genres": this.genreFormGroup.value.selectedGenre,
       "base64": this.imageSrc,
-      "rating": this.contentFormGroup.value.serieRating
+      "rating": this.contentFormGroup.value.serieRating,
+      "year": this.nameFormGroup.value.year,
+      "actors": this.genreFormGroup.value.selectedActor
         }).subscribe(
-           data => this.handleResponse(),
+           data => this.handleResponse(data),
            error => console.log(error)
        );
    }
 
-  handleResponse() {
-    this.dialogRef.close();
+  handleResponse(data) {
+    this.dialogRef.close(data);
   }
 
   OpenDiv() {

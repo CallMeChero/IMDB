@@ -8,6 +8,7 @@ use App\Movie;
 use App\User;
 use App\Genre;
 use App\Image;
+use App\Actor;
 
 class MovieController extends Controller
 {
@@ -26,7 +27,8 @@ class MovieController extends Controller
             'name' => request()->name,
             'user_id' => $user->id,
             'content' => request()->content,
-            'rating' => request()->rating
+            'rating' => request()->rating['rating'],
+            'release_year' => (int) request()->year
         ]);
 
         /*handle img*/
@@ -47,6 +49,11 @@ class MovieController extends Controller
         }
 
         $movie->save();
+
+        $actors = Actor::find(request()->actors);
+        $movie->actors()->attach($actors);
+
+
         $genres = Genre::find(request()->genres);
         $movie->genres()->attach($genres);
 

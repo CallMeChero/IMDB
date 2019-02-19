@@ -35,6 +35,20 @@
             </div>
         </mat-card-header>
         <hr class="style-seven">
+        <div class="released-year-box">
+            <h3>Released at: </h3> 
+            <i>{{ movie.release_year }}</i>
+        </div>
+        <mat-list style="display:flex; justify-content: flex-start">
+            <i class="material-icons" style="margin:10px;"> 
+                recent_actors
+            </i>
+            <mat-list-item>
+              <p matLine *ngFor="let actor of movie.actors">
+                <span><i>{{actor.name}}</i></span>
+              </p>
+            </mat-list-item>
+        </mat-list>
         <div class="rating-box">
           <h3>Rating:</h3>
           <star-rating *ngIf="movie.rating" class="star-rating" [rating]="movie.rating"></star-rating>
@@ -92,6 +106,16 @@
               <h3>Rating:</h3>
               <star-rating *ngIf="serie.rating" class="star-rating" [rating]="serie.rating"></star-rating>
             </div>
+            <mat-list style="display:flex; justify-content: flex-start">
+              <i class="material-icons" style="margin:10px;"> 
+                  recent_actors
+              </i>
+              <mat-list-item *ngFor="let actor of serie.actors">
+                <p matLine>
+                  <span><i>{{actor.name}}</i></span>
+                </p>
+              </mat-list-item>
+            </mat-list>
             <p class="mat-card-paragraph">
               {{ serie.content }}
             </p>

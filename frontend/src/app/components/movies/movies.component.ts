@@ -24,6 +24,7 @@ export class MoviesComponent implements OnInit {
   public error;
   public err;
   public file;
+  public actors;
   private imageSrc: string = '';
   actionButtonLabel: string = 'Retry';
   action: boolean = true;
@@ -51,6 +52,12 @@ export class MoviesComponent implements OnInit {
         Validators.compose([
           Validators.required,
           Validators.pattern('([a-zA-Z]\s|.){3,25}')
+      ])],
+      year:[
+        '', 
+        Validators.compose([
+          Validators.required,
+          Validators.pattern('\\d{4}')
       ])]
     });
     this.contentFormGroup = this.fb.group({
@@ -65,11 +72,15 @@ export class MoviesComponent implements OnInit {
     });
     this.genreFormGroup = this.fb.group({
       selectedGenre: [
+      ],
+      selectedActor: [
       ]
     });
     this.getGenres();
+    this.getActors();
    } 
-
+  
+  /* genres */
   getGenres() {
     this.auth.getGenres()
     .subscribe(
@@ -80,6 +91,19 @@ export class MoviesComponent implements OnInit {
 
   handleGenreResponse(data) {
     this.genres = data;
+  }
+
+  /* actors */
+  getActors() {
+    this.auth.getActors()
+    .subscribe(
+      data => this.handleActorsResponse(data),
+      error => console.log(error)
+    );
+  }
+
+  handleActorsResponse(data) {
+    this.actors = data;
   }
 
   onPictureUpload(picture) {
@@ -108,14 +132,16 @@ export class MoviesComponent implements OnInit {
   }
 
    onSubmit() {
-    this.nameFormGroup.value.content = this.contentFormGroup.value.content;
+     console.log(this.genreFormGroup.value.selectedActor);
      this.auth.sumbmitMovie({
       "name" : this.nameFormGroup.value.name,
       "content": this.contentFormGroup.value.content,
       "username": this.getLoggedUser(),
       "genres": this.genreFormGroup.value.selectedGenre,
       "base64": this.imageSrc,
-      "rating": this.contentFormGroup.value.movieRating
+      "rating": this.contentFormGroup.value.movieRating,
+      "year": this.nameFormGroup.value.year,
+      "actors": this.genreFormGroup.value.selectedActor
         }).subscribe(
            data => this.handleResponse(data),
            error => console.log(error)

@@ -11,10 +11,13 @@
 
     <mat-step [stepControl]="nameFormGroup">
       <form [formGroup]="nameFormGroup">
-        <ng-template matStepLabel>Add name</ng-template>
-        <div class="center-form">
+        <ng-template matStepLabel>Add movie info</ng-template>
+        <div class="center-form" style="justify-content: space-around">
           <mat-form-field class="expand">
             <input matInput placeholder="name" formControlName="name" id="name" name="name" required>
+          </mat-form-field>
+          <mat-form-field class="expand">
+              <input matInput placeholder="release year" formControlName="year" id="year" name="year" required>
           </mat-form-field>
           <div class="button-space-between">
             <button mat-stroked-button color="accent" matStepperPrevious>Back</button>
@@ -26,7 +29,7 @@
 
     <mat-step [stepControl]="genreFormGroup">
         <form [formGroup]="genreFormGroup">
-          <ng-template matStepLabel>Add genre(s)</ng-template>
+          <ng-template matStepLabel>Add genre(s), director and actor(s)</ng-template>
           <div class="center-form-ng-select" [class.biggerHeight]="isOpened">
               <ng-select 
                   [items]="genres"
@@ -38,6 +41,19 @@
                   placeholder="Select movie genre(s)"
                   formControlName="selectedGenre">
               </ng-select>
+
+              <ng-select 
+                  [items]="actors"
+                  bindLabel="name"
+                  bindValue="id"
+                  (open)="OpenDiv()"
+                  (close) ="CloseDiv()"
+                  [multiple]="true"
+                  placeholder="Select movie actor(s)"
+                  formControlName="selectedActor"
+                  maxSelectedItems="3">
+              </ng-select>
+
             <div class="button-space-between">
               <button mat-stroked-button color="accent" matStepperPrevious>Back</button>
               <button mat-stroked-button color="primary" matStepperNext>Next</button>
@@ -46,11 +62,11 @@
         </form>
     </mat-step>
 
-    <mat-step >
+    <mat-step>
       <form enctype="multipart/form-data">
         <ng-template matStepLabel>Upload picture</ng-template>
         <div class="center-form">
-            <input name="imageSrc" type="file" accept="image/*" (change)="handleInputChange($event)" />
+            <input name="imageSrc" class="upload-box" type="file" accept="image/*" (change)="handleInputChange($event)" />
           <div class="button-space-between">
             <button mat-stroked-button color="accent" matStepperPrevious>Back</button>
             <button mat-stroked-button color="primary" matStepperNext>Next</button>

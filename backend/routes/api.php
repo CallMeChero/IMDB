@@ -29,4 +29,7 @@ Route::group([
     Route::put('edit_serie', 'SerieController@editUserSerie');
     Route::post('delete_serie', 'SerieController@deleteUserSerie');
     Route::get('search_serie', 'SerieController@searchUserSerie'); 
+
+    //actors
+    Route::get('actors', 'ActorController@showActors');
 });

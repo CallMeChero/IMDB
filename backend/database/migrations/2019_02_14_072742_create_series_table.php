@@ -17,6 +17,7 @@ class CreateSeriesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();
             $table->string("name");
+            $table->integer("release_year")->nullable();
             $table->longText('content');
             $table->integer("rating")->nullable();
             $table->timestamps();

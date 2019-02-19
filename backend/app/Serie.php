@@ -31,4 +31,9 @@ class Serie extends Model
     {
         return $this->hasOne(Image::class);
     }
+
+    public function actors()
+    {
+        return $this->morphToMany(Actor::class, 'actorable');
+    }
 }

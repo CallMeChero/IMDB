@@ -74,4 +74,8 @@ export class AuthService {
     const  params = new  HttpParams().set('username', username).set('value',value);
     return this.http.get(this.baseURL + '/search_serie', {params});
   }
+
+  getActors() {
+    return this.http.get(this.baseURL + '/actors');
+  }
 }

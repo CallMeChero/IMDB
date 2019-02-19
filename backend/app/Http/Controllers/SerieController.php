@@ -8,13 +8,14 @@ use App\User;
 use App\Genre;
 use App\Image;
 use App\Serie;
+use App\Actor;
 
 class SerieController extends Controller
 {
     public function showUserSeries($username) {
         
         $user = User::where('username', $username)->first();
-        $series = Serie::with('genres')->where('user_id', $user->id)->get();
+        $series = Serie::with('genres')->with('actors')->where('user_id', $user->id)->get();
         
         return $series;
     }
@@ -26,7 +27,8 @@ class SerieController extends Controller
             'name' => request()->name,
             'user_id' => $user->id,
             'content' => request()->content,
-            'rating' => request()->rating
+            'rating' => request()->rating['rating'],
+            'release_year' => (int) request()->year
         ]);
 
         /*handle img*/
@@ -46,6 +48,10 @@ class SerieController extends Controller
             ]);
         }
         $serie->save();
+
+        $actors = Actor::find(request()->actors);
+        $serie->actors()->attach($actors);
+
         $genres = Genre::find(request()->genres);
         $serie->genres()->attach($genres);
 

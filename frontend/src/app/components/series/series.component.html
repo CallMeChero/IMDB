@@ -16,6 +16,9 @@
           <mat-form-field class="expand">
             <input matInput placeholder="name" formControlName="name" id="name" name="name" required>
           </mat-form-field>
+          <mat-form-field class="expand">
+              <input matInput placeholder="release year" formControlName="year" id="year" name="year" required>
+          </mat-form-field>
           <div class="button-space-between">
             <button mat-stroked-button color="accent" matStepperPrevious>Back</button>
             <button mat-stroked-button color="primary" matStepperNext>Next</button>
@@ -37,6 +40,17 @@
                   [multiple]="true"
                   placeholder="Select movie genre(s)"
                   formControlName="selectedGenre">
+              </ng-select>
+
+              <ng-select 
+                  [items]="actors"
+                  bindLabel="name"
+                  bindValue="id"
+                  (open)="OpenDiv()"
+                  (close) ="CloseDiv()"
+                  [multiple]="true"
+                  placeholder="Select movie actor(s)"
+                  formControlName="selectedActor">
               </ng-select>
             <div class="button-space-between">
               <button mat-stroked-button color="accent" matStepperPrevious>Back</button>

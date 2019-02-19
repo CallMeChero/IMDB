@@ -10,11 +10,11 @@ use App\Image;
 class Movie extends Model
 {
     protected $fillable = [
-        'name', 'user_id', 'content', 'rating'
+        'name', 'user_id', 'content', 'rating', 'release_year'
     ];
 
     protected $with = [
-        'image'
+        'image','actors'
     ];
 
     public function user()
@@ -30,5 +30,10 @@ class Movie extends Model
     public function image()
     {
         return $this->hasOne(Image::class);
+    }
+
+    public function actors()
+    {
+        return $this->morphToMany(Actor::class, 'actorable');
     }
 }

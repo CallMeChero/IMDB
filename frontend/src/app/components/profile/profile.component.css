@@ -104,5 +104,13 @@ p.mat-card-paragraph {
 .mat-input-underline {
     text-shadow: 1.5px 1.5px #3399ff;
     color: #000000;
+}
 
+.released-year-box {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.released-year-box>i{
+    padding:17px;
 }
