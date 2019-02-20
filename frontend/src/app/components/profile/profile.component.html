@@ -40,7 +40,17 @@
             <i>{{ movie.release_year }}</i>
         </div>
         <mat-list style="display:flex; justify-content: flex-start">
-            <i class="material-icons" style="margin:10px;"> 
+            <i class="material-icons" style="margin-top:10px;">
+                local_movies
+            </i>
+            <mat-list-item>
+              <p matLine *ngFor="let director of movie.directors">
+                <span><i>{{director.name}}</i></span>
+              </p>
+            </mat-list-item>
+        </mat-list>
+        <mat-list style="display:flex; justify-content: flex-start">
+            <i class="material-icons" style="margin-top:10px;"> 
                 recent_actors
             </i>
             <mat-list-item>

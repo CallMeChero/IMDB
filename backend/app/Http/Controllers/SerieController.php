@@ -27,7 +27,7 @@ class SerieController extends Controller
             'name' => request()->name,
             'user_id' => $user->id,
             'content' => request()->content,
-            'rating' => request()->rating['rating'],
+            'rating' => request()->rating,
             'release_year' => (int) request()->year
         ]);
 
@@ -91,7 +91,7 @@ class SerieController extends Controller
         $serie = Serie::find(request()->id)->delete();
         if($serie) {
             return response()->json([
-                'data' => 'Movie has been successfully deleted!'
+                'data' => 'Serie has been successfully deleted!'
             ]);
         }
     }

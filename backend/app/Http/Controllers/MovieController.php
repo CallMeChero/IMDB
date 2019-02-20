@@ -9,6 +9,7 @@ use App\User;
 use App\Genre;
 use App\Image;
 use App\Actor;
+use App\Director;
 
 class MovieController extends Controller
 {
@@ -27,7 +28,7 @@ class MovieController extends Controller
             'name' => request()->name,
             'user_id' => $user->id,
             'content' => request()->content,
-            'rating' => request()->rating['rating'],
+            'rating' => request()->rating,
             'release_year' => (int) request()->year
         ]);
 
@@ -53,9 +54,13 @@ class MovieController extends Controller
         $actors = Actor::find(request()->actors);
         $movie->actors()->attach($actors);
 
+        $directors = Director::find(request()->directors);
+        $movie->directors()->attach($directors);
+
 
         $genres = Genre::find(request()->genres);
         $movie->genres()->attach($genres);
+
 
         return $movie;
     }

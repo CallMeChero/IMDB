@@ -12,13 +12,15 @@
     <mat-step [stepControl]="nameFormGroup">
       <form [formGroup]="nameFormGroup">
         <ng-template matStepLabel>Add movie info</ng-template>
-        <div class="center-form" style="justify-content: space-around">
+        <div class="center-form">
           <mat-form-field class="expand">
             <input matInput placeholder="name" formControlName="name" id="name" name="name" required>
           </mat-form-field>
-          <mat-form-field class="expand">
+          <div>
+            <mat-form-field class="expand">
               <input matInput placeholder="release year" formControlName="year" id="year" name="year" required>
-          </mat-form-field>
+            </mat-form-field>
+          </div>
           <div class="button-space-between">
             <button mat-stroked-button color="accent" matStepperPrevious>Back</button>
             <button mat-stroked-button color="primary" matStepperNext>Next</button>
@@ -28,9 +30,9 @@
     </mat-step>
 
     <mat-step [stepControl]="genreFormGroup">
-        <form [formGroup]="genreFormGroup">
+        <form [formGroup]="genreFormGroup" [class.biggerHeight]="isOpened">
           <ng-template matStepLabel>Add genre(s), director and actor(s)</ng-template>
-          <div class="center-form-ng-select" [class.biggerHeight]="isOpened">
+          <div class="center-form-ng-select">
               <ng-select 
                   [items]="genres"
                   bindLabel="name"
@@ -39,7 +41,19 @@
                   (close) ="CloseDiv()"
                   [multiple]="true"
                   placeholder="Select movie genre(s)"
-                  formControlName="selectedGenre">
+                  formControlName="selectedGenre"
+                  required>
+              </ng-select>
+
+              <ng-select 
+                  [items]="directors"
+                  bindLabel="name"
+                  bindValue="id"
+                  (open)="OpenDiv()"
+                  (close) ="CloseDiv()"
+                  placeholder="Select movie director"
+                  formControlName="selectedDirector"
+                  required>
               </ng-select>
 
               <ng-select 
@@ -51,7 +65,8 @@
                   [multiple]="true"
                   placeholder="Select movie actor(s)"
                   formControlName="selectedActor"
-                  maxSelectedItems="3">
+                  maxSelectedItems="3"
+                  required>
               </ng-select>
 
             <div class="button-space-between">

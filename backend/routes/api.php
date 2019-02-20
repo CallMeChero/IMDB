@@ -32,4 +32,7 @@ Route::group([
 
     //actors
     Route::get('actors', 'ActorController@showActors');
+
+    //directors
+    Route::get('directors', 'DirectorController@showDirectors');
 });

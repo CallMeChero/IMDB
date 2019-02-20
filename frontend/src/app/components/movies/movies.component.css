@@ -23,7 +23,7 @@
 }
 
 .expand {
-    margin-top:15px;
+    width:50%;
     min-width: 250px;
 }
 
@@ -36,7 +36,7 @@ center-form {
 }
 
 .biggerHeight {
-    min-height: 300px;
+    min-height: 450px;
 }
 p {
     padding: 25px;

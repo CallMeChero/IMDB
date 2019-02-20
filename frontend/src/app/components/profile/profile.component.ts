@@ -51,6 +51,7 @@ export class ProfileComponent implements OnInit {
   
   handleResponse(data) {
     this.movies = data;
+    console.log(this.movies);
     for (let [key, value] of Object.entries(this.movies)) {
       if(!this.movies[key].image) {
         console.log(this.movies[key]);
@@ -64,7 +65,7 @@ export class ProfileComponent implements OnInit {
 
   /*  search */
 
-  public movieFilter (value: string):void{
+  movieFilter (value: string):void{
     if(value) {
       this.auth.searchUserMovies(value,this.username)
         .subscribe(
@@ -80,7 +81,7 @@ export class ProfileComponent implements OnInit {
     this.movies = data;
   }
 
-  public serieFilter (value: string):void{
+  serieFilter (value: string):void{
     if(value !== '') {
       this.auth.searchSerieFilter(value,this.username)
         .subscribe(

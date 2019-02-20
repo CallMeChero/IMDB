@@ -14,7 +14,7 @@ class Movie extends Model
     ];
 
     protected $with = [
-        'image','actors'
+        'image','actors', 'directors'
     ];
 
     public function user()
@@ -35,5 +35,10 @@ class Movie extends Model
     public function actors()
     {
         return $this->morphToMany(Actor::class, 'actorable');
+    }
+
+    public function directors()
+    {
+        return $this->morphToMany(Director::class, 'directorable');
     }
 }

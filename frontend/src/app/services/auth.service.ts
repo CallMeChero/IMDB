@@ -78,4 +78,8 @@ export class AuthService {
   getActors() {
     return this.http.get(this.baseURL + '/actors');
   }
+
+  getDirectors() {
+    return this.http.get(this.baseURL + '/directors');
+  }
 }

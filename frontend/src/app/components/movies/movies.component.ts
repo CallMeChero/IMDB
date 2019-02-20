@@ -25,6 +25,7 @@ export class MoviesComponent implements OnInit {
   public err;
   public file;
   public actors;
+  public directors;
   private imageSrc: string = '';
   actionButtonLabel: string = 'Retry';
   action: boolean = true;
@@ -73,11 +74,14 @@ export class MoviesComponent implements OnInit {
     this.genreFormGroup = this.fb.group({
       selectedGenre: [
       ],
+      selectedDirector: [
+      ],
       selectedActor: [
       ]
     });
     this.getGenres();
     this.getActors();
+    this.getDirectors();
    } 
   
   /* genres */
@@ -106,6 +110,19 @@ export class MoviesComponent implements OnInit {
     this.actors = data;
   }
 
+  /* directors */
+  getDirectors() {
+    this.auth.getDirectors()
+    .subscribe(
+      data => this.handleDirectorsResponse(data),
+      error => console.log(error)
+    );
+  }
+
+  handleDirectorsResponse(data) {
+    this.directors = data;
+  }
+
   onPictureUpload(picture) {
     this.file = picture.target.files[0]
   }
@@ -132,7 +149,8 @@ export class MoviesComponent implements OnInit {
   }
 
    onSubmit() {
-     console.log(this.genreFormGroup.value.selectedActor);
+     console.log("rating :" + this.contentFormGroup.value.movieRating);
+     console.log("directors :"+ this.genreFormGroup.value.selectedDirector)
      this.auth.sumbmitMovie({
       "name" : this.nameFormGroup.value.name,
       "content": this.contentFormGroup.value.content,
@@ -141,7 +159,8 @@ export class MoviesComponent implements OnInit {
       "base64": this.imageSrc,
       "rating": this.contentFormGroup.value.movieRating,
       "year": this.nameFormGroup.value.year,
-      "actors": this.genreFormGroup.value.selectedActor
+      "actors": this.genreFormGroup.value.selectedActor,
+      "directors": this.genreFormGroup.value.selectedDirector
         }).subscribe(
            data => this.handleResponse(data),
            error => console.log(error)

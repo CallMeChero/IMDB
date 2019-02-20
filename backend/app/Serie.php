@@ -36,4 +36,9 @@ class Serie extends Model
     {
         return $this->morphToMany(Actor::class, 'actorable');
     }
+
+    public function directors()
+    {
+        return $this->morphToMany(Director::class, 'directorable');
+    }
 }
