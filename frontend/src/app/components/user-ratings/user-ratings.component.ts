@@ -21,7 +21,7 @@ export class UserRatingsComponent implements OnInit {
   public username;
   public series;
 
-  public displayedColumns = ['rating','name', 'release_year','actors', 'directors', 'created_at']
+  public displayedColumns = ['rating','name', 'release_year','actors', 'directors', 'created_at', 'genres']
   public movieData;
   public serieData;
 
@@ -58,7 +58,6 @@ export class UserRatingsComponent implements OnInit {
     this.movieData = new MatTableDataSource(this.movies);
     this.movieData.paginator = this.moviePaginator;
     this.movieData.sort = this.movieSort;
-    console.log(this.movies);
   }
 
   applyMovieFilter(filterValue: string) {
@@ -80,7 +79,6 @@ export class UserRatingsComponent implements OnInit {
   
   handleSeriesResponse(data) {
     this.series = data;
-    console.log(this.series);
     this.serieData = new MatTableDataSource(this.series);
     this.serieData.paginator = this.seriePaginator;
     this.serieData.sort = this.serieSort;

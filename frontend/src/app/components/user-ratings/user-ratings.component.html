@@ -33,6 +33,13 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Release year </th>
         <td mat-cell *matCellDef="let row"> {{row.release_year}} </td>
       </ng-container>
+
+      <ng-container matColumnDef="genres">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Genres </th>
+          <td mat-cell *matCellDef="let row">{{ row.genres[0].name}} {{row.genres[1] !== undefined ? row.genres[1].name : ''}} {{ row.genres[2] !== undefined ? row.genres[2].name : ''}}
+          {{ row.genres[3] !== undefined ? row.genres[3].name : ''}} {{ row.genres[4] !== undefined ? row.genres[4].name : ''}}
+          </td>
+      </ng-container>
   
       <ng-container matColumnDef="actors">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Actors </th>
@@ -93,6 +100,13 @@
       <ng-container matColumnDef="release_year">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Release year </th>
         <td mat-cell *matCellDef="let elemenet"> {{elemenet.release_year}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="genres">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Genres </th>
+          <td mat-cell *matCellDef="let row">{{ row.genres[0].name}} {{row.genres[1] !== undefined ? row.genres[1].name : ''}} {{ row.genres[2] !== undefined ? row.genres[2].name : ''}}
+              {{ row.genres[3] !== undefined ? row.genres[3].name : ''}} {{ row.genres[4] !== undefined ? row.genres[4].name : ''}}
+          </td>
       </ng-container>
   
       <ng-container matColumnDef="actors">
