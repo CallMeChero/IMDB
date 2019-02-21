@@ -50,5 +50,5 @@ p {
 }
 
 .content{
-    overflow: -webkit-paged-y;
+    overflow: overflow-y;
 }

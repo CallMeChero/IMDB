@@ -149,8 +149,6 @@ export class MoviesComponent implements OnInit {
   }
 
    onSubmit() {
-     console.log("rating :" + this.contentFormGroup.value.movieRating);
-     console.log("directors :"+ this.genreFormGroup.value.selectedDirector)
      this.auth.sumbmitMovie({
       "name" : this.nameFormGroup.value.name,
       "content": this.contentFormGroup.value.content,

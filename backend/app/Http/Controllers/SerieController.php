@@ -9,6 +9,7 @@ use App\Genre;
 use App\Image;
 use App\Serie;
 use App\Actor;
+use App\Director;
 
 class SerieController extends Controller
 {
@@ -28,7 +29,7 @@ class SerieController extends Controller
             'user_id' => $user->id,
             'content' => request()->content,
             'rating' => request()->rating,
-            'release_year' => (int) request()->year
+            'release_year' => request()->year
         ]);
 
         /*handle img*/
@@ -55,6 +56,10 @@ class SerieController extends Controller
         $genres = Genre::find(request()->genres);
         $serie->genres()->attach($genres);
 
+        $directors = Director::find(request()->directors);
+        $serie->directors()->attach($directors);
+
+
         return $serie;
     }
 
@@ -70,7 +75,8 @@ class SerieController extends Controller
                     'name' => request()->name,
                     'content' => request()->content,
                     'genres' => request()->genres,
-                    'rating' => $rating
+                    'rating' => $rating,
+                    'release_year' => request()->year
                     ]);
         $serie->save();
 
@@ -80,8 +86,19 @@ class SerieController extends Controller
             }
             $genres = Genre::find($serie_genre);
             $serie->genres()->sync($genres);
-        } else if ($serie->genres()){
-            $serie->genres()->detach();
+        } 
+        if(request()->actors) {
+            foreach(request()->actors as $i => $actor) {
+                $serie_actors[] = $actor['id'];
+            }
+            $actors = Actor::find($serie_actors);
+            $serie->actors()->sync($actors);
+        } 
+        if(request()->directors) {
+            
+            $directors = Director::find(request()->directors);
+            $serie->directors()->detach();
+            $serie->directors()->attach($directors);
         }
         
         return $serie;

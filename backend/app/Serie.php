@@ -10,11 +10,11 @@ use App\Image;
 class Serie extends Model
 {
     protected $fillable = [
-        'name', 'user_id', 'content', 'rating'
+        'name', 'user_id', 'content', 'rating', 'release_year'
     ];
 
     protected $with = [
-        'image'
+        'image','actors', 'directors'
     ];
 
     public function user()

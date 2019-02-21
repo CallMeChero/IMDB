@@ -23,6 +23,7 @@ export class SeriesComponent implements OnInit {
   public genres;
   public file;
   public actors;
+  public directors;
   private imageSrc: string = '';
   actionButtonLabel: string = 'Retry';
   action: boolean = true;
@@ -69,10 +70,13 @@ export class SeriesComponent implements OnInit {
       selectedGenre: [
       ],
       selectedActor: [
+      ],
+      selectedDirector: [
       ]
     });
     this.getGenres();
     this.getActors();
+    this.getDirectors();
   }
 
   getGenres() {
@@ -98,6 +102,19 @@ export class SeriesComponent implements OnInit {
 
   handleActorsResponse(data) {
     this.actors = data;
+  }
+
+  /* directors */
+  getDirectors() {
+    this.auth.getDirectors()
+    .subscribe(
+      data => this.handleDirectorsResponse(data),
+      error => console.log(error)
+    );
+  }
+
+  handleDirectorsResponse(data) {
+    this.directors = data;
   }
 
   onPictureUpload(picture) {
@@ -135,7 +152,8 @@ export class SeriesComponent implements OnInit {
       "base64": this.imageSrc,
       "rating": this.contentFormGroup.value.serieRating,
       "year": this.nameFormGroup.value.year,
-      "actors": this.genreFormGroup.value.selectedActor
+      "actors": this.genreFormGroup.value.selectedActor,
+      "directors": this.genreFormGroup.value.selectedDirector
         }).subscribe(
            data => this.handleResponse(data),
            error => console.log(error)
@@ -143,6 +161,7 @@ export class SeriesComponent implements OnInit {
    }
 
   handleResponse(data) {
+    console.log(data);
     this.dialogRef.close(data);
   }
 

@@ -203,10 +203,6 @@ export class ProfileComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result == true) {
         this.deleteSerie(serie);
-        if(this.series.length == 0) {
-          this.areSeriesFilled = false;
-        }
-        this.getUserSeries();
       }
     });
   }
@@ -215,8 +211,13 @@ export class ProfileComponent implements OnInit {
     this.auth.deleteSerie(serie)
       .subscribe( message=> {
         this.openSnackBar(message)
-        this.series = this.series.filter(m => m !== serie)
+        this.series = this.series.filter(m => m !== serie),
+        this.getUserSeries();
        })
   };
+
+  ajde() {
+    console.log('kurcina');
+  }
 
 }

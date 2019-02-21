@@ -1,16 +1,14 @@
 <mat-tab-group class="mat-tab-group-box">
 <mat-tab label="Movies">
   <div class="profile">
-    <mat-card style="margin:15px 15%;">
+    <mat-card style="margin-top:15px; margin-bottom: 15px; margin-left: 15%; margin-right: 30%; display: flex; justify-content: space-evenly;">
       <mat-card-header>
           <!-- <div mat-card-avatar class="example-header-image"></div> -->
-          <mat-card-title *ngIf="!areMoviesFilled">Sorry, we couldn't find your movie list.</mat-card-title>
-          <mat-card-title *ngIf="areMoviesFilled">Add a new movie to your list.</mat-card-title>
+          <mat-card-title *ngIf="!areMoviesFilled">Sorry, we couldn't find your list of movies.</mat-card-title>
+          <mat-card-title *ngIf="areMoviesFilled">Add new movie to your list!</mat-card-title>
       </mat-card-header>
-      <mat-card-content>
-        <p class="mat-card-paragraph" *ngIf="!areMoviesFilled">Let's start by adding one. Click bellow!</p>
-        <p class="mat-card-paragraph" *ngIf="areMoviesFilled">Click bellow to add new one!</p>
-        <button mat-raised-button class="mat-primary pull-button" (click)="addMovie()">ADD</button>
+      <mat-card-content class="content-center">
+        <button mat-button class="mat-primary pull-button" (click)="addSerie()">Add new movie</button>
       </mat-card-content>
     </mat-card>
 
@@ -78,18 +76,17 @@
     </div>
   </div>
   </mat-tab>
+
   <mat-tab label="Series">
     <div class="profile">
-      <mat-card style="margin:15px 15%;">
+      <mat-card style="margin-top:15px; margin-bottom: 15px; margin-left: 15%; margin-right: 30%; display: flex; justify-content: space-evenly;">
         <mat-card-header>
             <!-- <div mat-card-avatar class="example-header-image"></div> -->
             <mat-card-title *ngIf="!areSeriesFilled">Sorry, we couldn't find your list of series.</mat-card-title>
-            <mat-card-title *ngIf="areSeriesFilled">Add new to your list.</mat-card-title>
+            <mat-card-title *ngIf="areSeriesFilled">Add new serie to your list!</mat-card-title>
         </mat-card-header>
-        <mat-card-content>
-          <p class="mat-card-paragraph" *ngIf="!areSeriesFilled">Let's start by adding one. Click bellow!</p>
-          <p class="mat-card-paragraph" *ngIf="areSeriesFilled">Click bellow to add new one!</p>
-          <button mat-raised-button class="mat-primary pull-button" (click)="addSerie()">ADD</button>
+        <mat-card-content class="content-center">
+          <button mat-button class="mat-primary pull-button" (click)="addSerie()">ADD</button>
         </mat-card-content>
       </mat-card>
 
@@ -114,20 +111,36 @@
                 </div>
             </mat-card-header>
             <hr class="style-seven">
+            <div class="released-year-box">
+                <h3>Released at: </h3> 
+                <i><strong>{{ serie.release_year }}</strong></i>
+            </div>
+            <mat-list style="display:flex; justify-content: flex-start">
+                <i class="material-icons material-icon-style" style="margin-top:10px;">
+                    local_movies
+                    <span class="tooltip">DIRECTOR</span>
+                </i>
+                <mat-list-item>
+                  <p matLine *ngFor="let director of serie.directors">
+                    <strong><i>{{director.name}}</i></strong>
+                  </p>
+                </mat-list-item>
+            </mat-list>
+            <mat-list style="display:flex; justify-content: flex-start">
+                <i class="material-icons material-icon-style" style="margin-top:10px;"> 
+                    recent_actors
+                    <span class="tooltip">ACTORS</span>
+                </i>
+                <mat-list-item>
+                  <p matLine *ngFor="let actor of serie.actors">
+                    <strong><i>{{actor.name}}</i></strong>
+                  </p>
+                </mat-list-item>
+            </mat-list>
             <div class="rating-box">
               <h3>Rating:</h3>
               <star-rating *ngIf="serie.rating" class="star-rating" [rating]="serie.rating"></star-rating>
             </div>
-            <mat-list style="display:flex; justify-content: flex-start">
-              <i class="material-icons" style="margin:10px;"> 
-                  recent_actors
-              </i>
-              <mat-list-item *ngFor="let actor of serie.actors">
-                <p matLine>
-                  <span><i>{{actor.name}}</i></span>
-                </p>
-              </mat-list-item>
-            </mat-list>
             <p class="mat-card-paragraph">
               {{ serie.content }}
             </p>

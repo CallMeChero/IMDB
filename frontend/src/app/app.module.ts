@@ -36,6 +36,7 @@ import { StarRatingModule } from 'angular-star-rating';
 import { SeriesComponent } from './components/series/series.component';
 import { EditSerieComponent } from './components/edit-serie/edit-serie.component';
 import { DeleteSerieComponent } from './components/delete-serie/delete-serie.component';
+import { UserRatingsComponent } from './components/user-ratings/user-ratings.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { DeleteSerieComponent } from './components/delete-serie/delete-serie.com
     EditMovieComponent,
     SeriesComponent,
     EditSerieComponent,
-    DeleteSerieComponent
+    DeleteSerieComponent,
+    UserRatingsComponent
   ],
   imports: [
     BrowserModule,

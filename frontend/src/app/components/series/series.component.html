@@ -46,6 +46,18 @@
               </ng-select>
 
               <ng-select 
+                  [items]="directors"
+                  bindLabel="name"
+                  bindValue="id"
+                  (open)="OpenDiv()"
+                  (close) ="CloseDiv()"
+                  placeholder="Select movie director"
+                  formControlName="selectedDirector"
+                  style="margin: 15px 0;z-index: 1000; overflow:visible"
+                  required>
+              </ng-select>
+
+              <ng-select 
                   [items]="actors"
                   bindLabel="name"
                   bindValue="id"
