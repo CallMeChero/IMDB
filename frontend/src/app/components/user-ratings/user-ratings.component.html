@@ -1,4 +1,5 @@
-<mat-form-field>
+<div>
+  <mat-form-field class="search-input">
     <input matInput 
            (keyup)="applyMovieFilter($event.target.value)" 
            placeholder="Filter movie list">
@@ -15,9 +16,12 @@
            matSortActive="ID" 
            matSortDirection="asc">
   
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      <ng-container matColumnDef="rating">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Rating </th>
+        <td mat-cell *matCellDef="let elemenet" class="rating-box"> 
+            <star-rating-control rating = {{elemenet.rating}}>
+          </star-rating-control>
+        </td>
       </ng-container>
   
       <ng-container matColumnDef="name">
@@ -55,58 +59,62 @@
                   [pageSizeOptions]="[5, 10, 25, 100]">
     </mat-paginator>
   </div>
+</div>
 
-  <div>
-    <mat-form-field>
-        <input matInput 
-               (keyup)="applySerieFilter($event.target.value)" 
-               placeholder="Filter serie list">
-    </mat-form-field>
-      
-    <div class="mat-elevation-z8">
-      <table mat-table 
-            [dataSource]="serieData" 
-            #serieSort="matSort"
-            matSort 
-            class="table-width"
-            matSortActive="ID" 
-            matSortDirection="asc">
+<div>
+  <mat-form-field class="search-input">
+      <input matInput 
+              (keyup)="applySerieFilter($event.target.value)" 
+              placeholder="Filter serie list">
+  </mat-form-field>
     
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-          <td mat-cell *matCellDef="let elemenet"> {{elemenet.id}} </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-          <td mat-cell *matCellDef="let elemenet"> {{elemenet.name}} </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="release_year">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Release year </th>
-          <td mat-cell *matCellDef="let elemenet"> {{elemenet.release_year}} </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="actors">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Actors </th>
-          <td mat-cell *matCellDef="let elemenet"> {{ elemenet.actors[0].name}} {{elemenet.actors[1] !== undefined ? elemenet.actors[1].name : ''}} {{ elemenet.actors[2] !== undefined ? elemenet.actors[2].name : ''}}</td>
-        </ng-container>
+  <div class="mat-elevation-z8">
+    <table mat-table 
+          [dataSource]="serieData" 
+          #serieSort="matSort"
+          matSort 
+          class="table-width"
+          matSortActive="ID" 
+          matSortDirection="asc">
   
-        <ng-container matColumnDef="directors">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Directors </th>
-            <td mat-cell *matCellDef="let elemenet"> {{elemenet.directors[0].name}} </td>
-        </ng-container>
+      <ng-container matColumnDef="rating">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Rating </th>
+        <td mat-cell *matCellDef="let elemenet" class="rating-box"> 
+            <star-rating-control rating = {{elemenet.rating}}>
+          </star-rating-control>
+        </td>
+      </ng-container>
   
-        <ng-container matColumnDef="created_at">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Created at </th>
-            <td mat-cell *matCellDef="let elemenet"> {{elemenet.created_at}} </td>
-        </ng-container>
-    
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let element; columns: displayedColumns;">
-        </tr>
-      </table>
-    
-      <mat-paginator style="width: 100%" #seriePaginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-    </div>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let elemenet"> {{elemenet.name}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="release_year">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Release year </th>
+        <td mat-cell *matCellDef="let elemenet"> {{elemenet.release_year}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="actors">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actors </th>
+        <td mat-cell *matCellDef="let elemenet"> {{ elemenet.actors[0].name}} {{elemenet.actors[1] !== undefined ? elemenet.actors[1].name : ''}} {{ elemenet.actors[2] !== undefined ? elemenet.actors[2].name : ''}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="directors">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Directors </th>
+          <td mat-cell *matCellDef="let elemenet"> {{elemenet.directors[0].name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="created_at">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Created at </th>
+          <td mat-cell *matCellDef="let elemenet"> {{elemenet.created_at}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns;">
+      </tr>
+    </table>
+  
+    <mat-paginator style="width: 100%" #seriePaginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
   </div>
+</div>
