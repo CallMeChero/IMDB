@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
 
   quickMenu = [
     {route: '/profile', component: 'View profile'},
-    {route: '/#', component: 'Your ratings'},
+    {route: '/ratings', component: 'Your ratings'},
     {route: '/logout', component: 'Logout'}
   ];
 
@@ -44,6 +44,8 @@ export class NavbarComponent implements OnInit {
         this.router.navigateByUrl(route + '/' + this.getLoggedUser());
       } else if(route == '/logout') {
         this.logout();
+      } else if(route == '/ratings') {
+        this.router.navigateByUrl('ratings');
       }
     }
   }

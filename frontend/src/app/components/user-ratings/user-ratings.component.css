@@ -1,0 +1,25 @@
+.mat-row {
+    border-bottom: 0;
+  }
+
+.mat-row:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, .1);
+  }
+  
+  .expandable-row {
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    background-color: #fafafa;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  

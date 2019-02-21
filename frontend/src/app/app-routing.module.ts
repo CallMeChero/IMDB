@@ -7,6 +7,7 @@ import { RequestResetComponent } from './components/password/request-reset/reque
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
 import { BeforeLoginService } from './services/before-login.service';
 import { AfterLoginService } from './services/after-login.service';
+import { UserRatingsComponent } from './components/user-ratings/user-ratings.component';
 
 const routes: Routes = [
   { path:'login', component: LoginComponent, canActivate: [BeforeLoginService]},
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path:'profile/:username', component: ProfileComponent,  canActivate: [AfterLoginService]},
   { path:'request-password-reset', component: RequestResetComponent, canActivate: [BeforeLoginService] },
   { path:'response-password-reset', component: ResponseResetComponent, canActivate: [BeforeLoginService]},
+  { path:'ratings', component: UserRatingsComponent,  canActivate: [AfterLoginService] },
   { path: '**',component: LoginComponent}
 ];
 
