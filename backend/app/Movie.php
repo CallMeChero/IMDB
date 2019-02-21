@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Genre;
 use App\Image;
+use App\Director;
 
 class Movie extends Model
 {

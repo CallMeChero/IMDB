@@ -37,25 +37,27 @@
         <hr class="style-seven">
         <div class="released-year-box">
             <h3>Released at: </h3> 
-            <i>{{ movie.release_year }}</i>
+            <i><strong>{{ movie.release_year }}</strong></i>
         </div>
         <mat-list style="display:flex; justify-content: flex-start">
-            <i class="material-icons" style="margin-top:10px;">
+            <i class="material-icons material-icon-style" style="margin-top:10px;">
                 local_movies
+                <span class="tooltip">DIRECTOR</span>
             </i>
             <mat-list-item>
               <p matLine *ngFor="let director of movie.directors">
-                <span><i>{{director.name}}</i></span>
+                <strong><i>{{director.name}}</i></strong>
               </p>
             </mat-list-item>
         </mat-list>
         <mat-list style="display:flex; justify-content: flex-start">
-            <i class="material-icons" style="margin-top:10px;"> 
+            <i class="material-icons material-icon-style" style="margin-top:10px;"> 
                 recent_actors
+                <span class="tooltip">ACTORS</span>
             </i>
             <mat-list-item>
               <p matLine *ngFor="let actor of movie.actors">
-                <span><i>{{actor.name}}</i></span>
+                <strong><i>{{actor.name}}</i></strong>
               </p>
             </mat-list-item>
         </mat-list>

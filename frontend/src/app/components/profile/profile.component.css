@@ -111,6 +111,25 @@ p.mat-card-paragraph {
     justify-content: flex-start;
 }
 
+.material-icon-style {
+  margin-top:10px;
+}
+
+.tooltip {
+    visibility: hidden;
+    position: absolute;
+    font-size: 15px;
+    color: #3f51b5;
+    padding: 7px;
+    border-radius: 25px;
+    display:block;
+    font-style: italic;
+}
+
+.material-icon-style:hover .tooltip {
+    visibility: visible;
+}
+
 .released-year-box>i{
     padding:17px;
 }

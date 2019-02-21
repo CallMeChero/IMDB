@@ -20,6 +20,7 @@
 
 .center-form {
     text-align: center;
+    padding: 15px;
 }
 
 .expand {
@@ -27,9 +28,6 @@
     min-width: 250px;
 }
 
-center-form {
-    padding: 15px;
-}
 .expand2 {
     margin-top:15px;
     min-width: 550px;
@@ -49,4 +47,8 @@ p {
 
 .ratings {
     padding: 1em;
+}
+
+.content{
+    overflow: -webkit-paged-y;
 }

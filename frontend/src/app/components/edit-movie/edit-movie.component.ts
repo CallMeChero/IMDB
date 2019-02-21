@@ -20,6 +20,8 @@ export class EditMovieComponent implements OnInit {
   public error;
   public tokenData;
   public genres;
+  public directors;
+  public actors;
 
   onClickResult: ClickEvent;
   onHoverRatingChangeResult: HoverRatingChangeEvent;
@@ -55,6 +57,12 @@ export class EditMovieComponent implements OnInit {
     selectedGenre: [this.data.movie.genres],
     rating: [
       this.data.movie.rating
+    ],
+    selectedDirector: [
+      this.data.movie.directors[0]
+    ],
+    selectedActor: [
+      this.data.movie.actors
     ]
   });
 
@@ -85,6 +93,9 @@ export class EditMovieComponent implements OnInit {
 
   ngOnInit() {
     this.getGenres();
+    this.getActors();
+    this.getDirectors();
+    console.log(this.data.movie.directors);
   }
 
   onNoClick(): void {
@@ -99,6 +110,8 @@ export class EditMovieComponent implements OnInit {
       "content": this.editMovie.value.content,
       "rating": this.genreFormGroup.value.rating,
       "genres": this.genreFormGroup.value.selectedGenre,
+      "actors": this.genreFormGroup.value.selectedActor,
+      "directors": this.genreFormGroup.value.selectedDirector
         }).subscribe(
            data => this.handleResponse(data),
            error => console.log(error)
@@ -106,8 +119,37 @@ export class EditMovieComponent implements OnInit {
    }
 
    handleResponse(data) {
+     console.log(data);
     this.dialogRef.close(data);
    }
+
+  /* actors */
+  getActors() {
+    this.auth.getActors()
+    .subscribe(
+      data => this.handleActorsResponse(data),
+      error => console.log(error)
+    );
+  }
+
+  handleActorsResponse(data) {
+    this.actors = data;
+  }
+
+  /* directors */
+  getDirectors() {
+    this.auth.getDirectors()
+    .subscribe(
+      data => this.handleDirectorsResponse(data),
+      error => console.log(error)
+    );
+  }
+
+  handleDirectorsResponse(data) {
+    this.directors = data;
+    console.log(this.directors);
+  }
+
 
    onClick = ($event: ClickEvent) => {
     console.log($event);

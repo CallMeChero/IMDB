@@ -34,6 +34,25 @@
             formControlName="selectedGenre">
         </ng-select>
 
+        <ng-select 
+            [items]="directors"
+            bindLabel="name"
+            placeholder="Select movie director"
+            formControlName="selectedDirector"
+            required>
+        </ng-select>
+
+        <ng-select 
+            [items]="actors"
+            bindLabel="name"
+            [multiple]="true"
+            placeholder="Select movie actor(s)"
+            formControlName="selectedActor"
+            maxSelectedItems="3"
+            dropdownPosition="top"
+            required>
+        </ng-select>
+
         <div class="rating-box">
             <span>Rate:</span>
             <star-rating-control 

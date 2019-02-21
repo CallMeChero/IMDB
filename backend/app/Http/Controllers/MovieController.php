@@ -74,8 +74,12 @@ class MovieController extends Controller
     }
 
     public function editUserMovie(Request $request) {
+
         $movie = Movie::find(request()->id);
         $rating = (int) request()->rating['rating'];
+        if(!$rating) {
+            $rating = $movie->rating;
+        }
         $movie->update([
                     'name' => request()->name,
                     'content' => request()->content,
@@ -90,8 +94,19 @@ class MovieController extends Controller
             }
             $genres = Genre::find($movie_genres);
             $movie->genres()->sync($genres);
-        } else if ($movie->genres()){
-            $movie->genres()->detach();
+        }
+        if(request()->actors) {
+            foreach(request()->actors as $i => $actor) {
+                $movie_actors[] = $actor['id'];
+            }
+            $actors = Actor::find($movie_actors);
+            $movie->actors()->sync($actors);
+        } 
+        if(request()->directors) {
+            
+            $directors = Director::find(request()->directors);
+            $movie->directors()->detach();
+            $movie->directors()->attach($directors);
         }
         
         return $movie;

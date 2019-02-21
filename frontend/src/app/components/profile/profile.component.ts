@@ -161,10 +161,8 @@ export class ProfileComponent implements OnInit {
 
   handleSeriesResponse(data) {
     this.series = data;
-    console.log(data);
     for (let [key, value] of Object.entries(this.series)) {
       if(!this.series[key].image) {
-        console.log(this.series[key]);
         this.series[key].image = { filename :'movie_default.jpg'}
       }
     }
@@ -180,7 +178,6 @@ export class ProfileComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result)
       this.getUserSeries();
     });
   }
@@ -193,7 +190,6 @@ export class ProfileComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       this.getUserSeries();
     });
   }
