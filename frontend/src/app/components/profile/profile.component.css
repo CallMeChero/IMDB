@@ -25,6 +25,7 @@
 
 .info {
     flex:40%;
+    margin-left:2.5%;
 }
 
 .info-image {
@@ -77,6 +78,7 @@ img {
     height: 50%;
     object-fit: fill;
     margin:0;
+    border-radius: 4px;
 }
 
 mat-card-actions {
@@ -123,6 +125,7 @@ p.mat-card-paragraph {
     font-family: "Book Antiqua ,Palatino,Palatino Linotype,Palatino LT ST, Georgia, serif";
     margin-top: 30px;
     margin-bottom: 30px;
+    font-size: 17.5px;
 }
 
 .mat-tab-group-box {
@@ -139,7 +142,7 @@ p.mat-card-paragraph {
 }
 
 .mat-input-underline {
-    text-shadow: 1.5px 1.5px #4CAF50;
+    text-shadow: 1.2px 1.2px #4CAF50;
     color: #000000;
     margin-right:5%;
 }

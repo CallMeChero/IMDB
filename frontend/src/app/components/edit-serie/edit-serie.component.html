@@ -12,6 +12,10 @@
             <mat-error class="error-message" *ngIf="editSerie.get('name').hasError(validation.type) && (editSerie.get('name').dirty || editSerie.get('name').touched)">{{validation.message}}</mat-error>
         </mat-error>
       </mat-form-field>
+
+        <mat-form-field class="expand-field">
+            <input matInput placeholder="release year" formControlName="year" id="year" name="year" required>
+        </mat-form-field>
     
       <mat-form-field class="expand-field">
           <textarea matInput type="text" placeholder="content" formControlName="content" id="content" name="content" required>
@@ -33,6 +37,24 @@
                 placeholder="Select movie genre(s)"
                 formControlName="selectedGenre">
             </ng-select>
+
+            <ng-select 
+                  [items]="directors"
+                  bindLabel="name"
+                  placeholder="Select movie director"
+                  formControlName="selectedDirector"
+                  required>
+              </ng-select>
+
+              <ng-select 
+                  [items]="actors"
+                  bindLabel="name"
+                  [multiple]="true"
+                  placeholder="Select movie actor(s)"
+                  formControlName="selectedActor"
+                  maxSelectedItems="3"
+                  required>
+              </ng-select>
     
             <div class="rating-box">
                 <span>Rate:</span>

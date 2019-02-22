@@ -18,6 +18,10 @@
     width: 100%;
   }
 
+  .mat-form-field-infix {
+    border: 0;
+  }
+
   .search-input {
       margin-top:2.5%;
       padding-top:2px;

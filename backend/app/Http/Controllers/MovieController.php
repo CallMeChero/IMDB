@@ -84,7 +84,8 @@ class MovieController extends Controller
                     'name' => request()->name,
                     'content' => request()->content,
                     'genres' => request()->genres,
-                    'rating' => $rating
+                    'rating' => $rating,
+                    'release_year' => request()->year
                     ]);
         $movie->save();
 

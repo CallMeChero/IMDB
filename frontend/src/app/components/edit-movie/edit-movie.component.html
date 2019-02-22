@@ -14,6 +14,10 @@
   </mat-form-field>
 
   <mat-form-field class="expand-field">
+        <input matInput placeholder="release year" formControlName="year" id="year" name="year" required>
+  </mat-form-field>
+
+  <mat-form-field class="expand-field">
       <textarea matInput type="text" placeholder="content" formControlName="content" id="content" name="content" required>
       </textarea>
       <mat-error *ngIf="editMovie.hasError('required')">

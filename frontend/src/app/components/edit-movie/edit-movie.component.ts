@@ -51,6 +51,9 @@ export class EditMovieComponent implements OnInit {
         Validators.compose([
           Validators.required
         ])
+      ],
+      year: [
+        this.data.movie.release_year
       ]
   });
   genreFormGroup = this.fb.group({
@@ -107,6 +110,7 @@ export class EditMovieComponent implements OnInit {
      this.auth.editMovie({
       "id" : this.editMovie.value.id,
       "name" : this.editMovie.value.name,
+      "year": this.editMovie.value.year,
       "content": this.editMovie.value.content,
       "rating": this.genreFormGroup.value.rating,
       "genres": this.genreFormGroup.value.selectedGenre,

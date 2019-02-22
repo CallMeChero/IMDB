@@ -14,7 +14,7 @@ class Serie extends Model
     ];
 
     protected $with = [
-        'image','actors', 'directors'
+        'image','actors', 'directors','genres'
     ];
 
     public function user()
