@@ -12,9 +12,6 @@
 
   <div *ngIf="areMoviesFilled">
     <mat-card class="movie-card" *ngFor="let movie of movies">
-      <div class="movie-header">
-        <img src="assets/img/{{ movie.image.filename }}">
-      </div>
     <div class="movie-content">
       <mat-card-content>
         <mat-card-header>
@@ -27,35 +24,42 @@
             </div>
         </mat-card-header>
         <hr class="style-seven">
-        <div class="released-year-box">
-            <h3>Released at: </h3> 
-            <i><strong>{{ movie.release_year }}</strong></i>
-        </div>
-        <mat-list style="display:flex; justify-content: flex-start">
-            <i class="material-icons material-icon-style" style="margin-top:10px;">
-                local_movies
-                <span class="tooltip">DIRECTOR</span>
-            </i>
-            <mat-list-item>
-              <p matLine *ngFor="let director of movie.directors">
-                <strong><i>{{director.name}}</i></strong>
-              </p>
-            </mat-list-item>
-        </mat-list>
-        <mat-list style="display:flex; justify-content: flex-start">
-            <i class="material-icons material-icon-style" style="margin-top:10px;"> 
-                recent_actors
-                <span class="tooltip">ACTORS</span>
-            </i>
-            <mat-list-item>
-              <p matLine *ngFor="let actor of movie.actors">
-                <strong><i>{{actor.name}}</i></strong>
-              </p>
-            </mat-list-item>
-        </mat-list>
-        <div class="rating-box">
-          <h3>Rating:</h3>
-          <star-rating *ngIf="movie.rating" class="star-rating" [rating]="movie.rating"></star-rating>
+        <div class="container">
+          <div class="info">
+            <div class="released-year-box">
+                <h3>Released at: </h3> 
+                <i><strong>{{ movie.release_year }}</strong></i>
+            </div>
+            <mat-list style="display:flex; justify-content: flex-start">
+                <i class="material-icons material-icon-style" style="margin-top:10px;">
+                    local_movies
+                    <span class="tooltip">DIRECTOR</span>
+                </i>
+                <mat-list-item>
+                  <p matLine *ngFor="let director of movie.directors">
+                    <strong><i>{{director.name}}</i></strong>
+                  </p>
+                </mat-list-item>
+            </mat-list>
+            <mat-list style="display:flex; justify-content: flex-start">
+                <i class="material-icons material-icon-style" style="margin-top:10px;"> 
+                    recent_actors
+                    <span class="tooltip">ACTORS</span>
+                </i>
+                <mat-list-item>
+                  <p matLine *ngFor="let actor of movie.actors">
+                    <strong><i>{{actor.name}}</i></strong>
+                  </p>
+                </mat-list-item>
+          </mat-list>
+            <div class="rating-box">
+              <h3>Rating:</h3>
+              <star-rating *ngIf="movie.rating" class="star-rating" [rating]="movie.rating"></star-rating>
+            </div>
+          </div>
+          <div class="info-image">
+              <img src="assets/img/{{ movie.image.filename }}">
+          </div>
         </div>
         <p class="mat-card-paragraph">
           {{ movie.content }}
@@ -73,10 +77,6 @@
 
   <mat-tab label="Series">
     <div class="profile">
-      <mat-card class="mat-card-box" *ngIf="!areSeriesFilled">
-        <mat-card-title>Sorry, we couldn't find your list of series.</mat-card-title>
-      </mat-card>
-
       <div class="table-actions-box">
         <mat-form-field fxFlex="40%" class="mat-input-underline">
           <input matInput type="text" (keyup)="serieFilter($event.target.value)" placeholder="Filter by serie name">
@@ -88,9 +88,6 @@
     
       <div *ngIf="areSeriesFilled">
         <mat-card class="movie-card" *ngFor="let serie of series">
-          <div class="movie-header">
-            <img src="assets/img/{{ serie.image.filename }}">
-          </div>
         <div class="movie-content">
           <mat-card-content>
             <mat-card-header>
@@ -103,35 +100,42 @@
                 </div>
             </mat-card-header>
             <hr class="style-seven">
-            <div class="released-year-box">
-                <h3>Released at: </h3> 
-                <i><strong>{{ serie.release_year }}</strong></i>
-            </div>
-            <mat-list style="display:flex; justify-content: flex-start">
-                <i class="material-icons material-icon-style" style="margin-top:10px;">
-                    local_movies
-                    <span class="tooltip">DIRECTOR</span>
-                </i>
-                <mat-list-item>
-                  <p matLine *ngFor="let director of serie.directors">
-                    <strong><i>{{director.name}}</i></strong>
-                  </p>
-                </mat-list-item>
-            </mat-list>
-            <mat-list style="display:flex; justify-content: flex-start">
-                <i class="material-icons material-icon-style" style="margin-top:10px;"> 
-                    recent_actors
-                    <span class="tooltip">ACTORS</span>
-                </i>
-                <mat-list-item>
-                  <p matLine *ngFor="let actor of serie.actors">
-                    <strong><i>{{actor.name}}</i></strong>
-                  </p>
-                </mat-list-item>
-            </mat-list>
-            <div class="rating-box">
-              <h3>Rating:</h3>
-              <star-rating *ngIf="serie.rating" class="star-rating" [rating]="serie.rating"></star-rating>
+            <div class="container">
+              <div class="info">
+                <div class="released-year-box">
+                    <h3>Released at: </h3> 
+                    <i><strong>{{ serie.release_year }}</strong></i>
+                </div>
+                <mat-list style="display:flex; justify-content: flex-start">
+                    <i class="material-icons material-icon-style" style="margin-top:10px;">
+                        local_movies
+                        <span class="tooltip">DIRECTOR</span>
+                    </i>
+                    <mat-list-item>
+                      <p matLine *ngFor="let director of serie.directors">
+                        <strong><i>{{director.name}}</i></strong>
+                      </p>
+                    </mat-list-item>
+                </mat-list>
+                <mat-list style="display:flex; justify-content: flex-start">
+                    <i class="material-icons material-icon-style" style="margin-top:10px;"> 
+                        recent_actors
+                        <span class="tooltip">ACTORS</span>
+                    </i>
+                    <mat-list-item>
+                      <p matLine *ngFor="let actor of serie.actors">
+                        <strong><i>{{actor.name}}</i></strong>
+                      </p>
+                    </mat-list-item>
+                </mat-list>
+                <div class="rating-box">
+                  <h3>Rating:</h3>
+                  <star-rating *ngIf="serie.rating" class="star-rating" [rating]="serie.rating"></star-rating>
+                </div>
+              </div>
+              <div class="info-image">
+                    <img src="assets/img/{{ serie.image.filename }}">
+              </div>
             </div>
             <p class="mat-card-paragraph">
               {{ serie.content }}
