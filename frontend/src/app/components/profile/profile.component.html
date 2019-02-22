@@ -1,20 +1,14 @@
 <mat-tab-group class="mat-tab-group-box">
 <mat-tab label="Movies">
   <div class="profile">
-    <mat-card style="margin-top:15px; margin-bottom: 15px; margin-left: 15%; margin-right: 30%; display: flex; justify-content: space-evenly;">
-      <mat-card-header>
-          <!-- <div mat-card-avatar class="example-header-image"></div> -->
-          <mat-card-title *ngIf="!areMoviesFilled">Sorry, we couldn't find your list of movies.</mat-card-title>
-          <mat-card-title *ngIf="areMoviesFilled">Add new movie to your list!</mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="content-center">
-        <button mat-button class="mat-primary pull-button" (click)="addMovie()">Add new movie</button>
-      </mat-card-content>
-    </mat-card>
-
-  <mat-form-field fxFlex="40%" style="margin: 0 15%;" class="mat-input-underline">
-      <input matInput type="text" (keyup)="movieFilter($event.target.value)" placeholder="Filter by movie name">
-  </mat-form-field>
+    <div class="table-actions-box">
+      <mat-form-field fxFlex="40%" class="mat-input-underline">
+        <input matInput type="text" (keyup)="movieFilter($event.target.value)" placeholder="Filter by movie name">
+      </mat-form-field>
+      <div style="white-space: nowrap;">
+        <button class="add-button" (click)="addMovie()">New movie</button>
+      </div>
+    </div>
 
   <div *ngIf="areMoviesFilled">
     <mat-card class="movie-card" *ngFor="let movie of movies">
@@ -79,20 +73,18 @@
 
   <mat-tab label="Series">
     <div class="profile">
-      <mat-card style="margin-top:15px; margin-bottom: 15px; margin-left: 15%; margin-right: 30%; display: flex; justify-content: space-evenly;">
-        <mat-card-header>
-            <!-- <div mat-card-avatar class="example-header-image"></div> -->
-            <mat-card-title *ngIf="!areSeriesFilled">Sorry, we couldn't find your list of series.</mat-card-title>
-            <mat-card-title *ngIf="areSeriesFilled">Add new serie to your list!</mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="content-center">
-          <button mat-button class="mat-primary pull-button" (click)="addSerie()">ADD</button>
-        </mat-card-content>
+      <mat-card class="mat-card-box" *ngIf="!areSeriesFilled">
+        <mat-card-title>Sorry, we couldn't find your list of series.</mat-card-title>
       </mat-card>
 
-      <mat-form-field fxFlex="40%" style="margin: 0 15%;" class="mat-input-underline">
-        <input matInput type="text" class="" (keyup)="serieFilter($event.target.value)" placeholder="Filter by movie name">
-      </mat-form-field>
+      <div class="table-actions-box">
+        <mat-form-field fxFlex="40%" class="mat-input-underline">
+          <input matInput type="text" (keyup)="serieFilter($event.target.value)" placeholder="Filter by serie name">
+        </mat-form-field>
+        <div>
+          <button class="add-button" (click)="addSerie()">Add new serie</button>
+        </div>
+      </div>
     
       <div *ngIf="areSeriesFilled">
         <mat-card class="movie-card" *ngFor="let serie of series">

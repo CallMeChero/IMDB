@@ -21,7 +21,7 @@ export class UserRatingsComponent implements OnInit {
   public username;
   public series;
 
-  public displayedColumns = ['rating','name', 'release_year','actors', 'directors', 'created_at', 'genres']
+  public displayedColumns = ['rating','name', 'release_year', 'genres', 'actors', 'directors', 'created_at']
   public movieData;
   public serieData;
 
